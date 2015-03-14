@@ -15,6 +15,7 @@ namespace ClientServerProject
     {
         private MySqlConnection connection;
         private DBconnect db;
+        private EmployeeOrders EmpOrders;
 
         public Form1()
         {
@@ -55,6 +56,16 @@ namespace ClientServerProject
                         break;
                 }
             }
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            EmpOrders = new EmployeeOrders(connection, " oi");
+            EmpOrders.Show();
+            this.Hide();
+            //this.Close();
+            
+
         }
     }
 }
