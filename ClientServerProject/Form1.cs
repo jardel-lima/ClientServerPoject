@@ -15,6 +15,7 @@ namespace ClientServerProject
     {
         private MySqlConnection connection;
         private DBconnect db;
+        private EmployeeOrders EmpOrders;
 
         public Form1()
         {
@@ -25,9 +26,9 @@ namespace ClientServerProject
         {
             db = new DBconnect();
             db.host = "ec2-54-152-4-112.compute-1.amazonaws.com";
-            db.uid = "f2014_user19";
-            db.password = "f2014_user19";
-            db.database = "f2014_user19";
+            db.uid = "f2014_user24";
+            db.password = "f2014_user24";
+            db.database = "f2014_user24";
             connect();
         }
 
@@ -55,6 +56,16 @@ namespace ClientServerProject
                         break;
                 }
             }
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            EmpOrders = new EmployeeOrders(connection, " oi");
+            EmpOrders.Show();
+            this.Hide();
+            //this.Close();
+            
+
         }
     }
 }

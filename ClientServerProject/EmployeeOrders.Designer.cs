@@ -83,6 +83,7 @@
             this.Name = "EmployeeOrders";
             this.Text = "EmployeeOrders";
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).EndInit();
+            this.Load += new System.EventHandler(this.EmployeeOrders_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
