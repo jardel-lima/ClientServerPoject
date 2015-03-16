@@ -65,33 +65,40 @@ namespace ClientServerProject
             string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"'";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             MySqlDataReader dataReader = cmd.ExecuteReader();
-            
-            while(dataReader.Read()){
-                Value = dataReader["position"] + "";
-            }
-
-            if (Value.Equals("0", StringComparison.Ordinal))
+            if (dataReader.RecordsAffected!=0)
             {
-                EmpOrders = new EmployeeOrders(connection, " oi");
-                EmpOrders.Show();
-                this.Hide();
-                
+
+                while (dataReader.Read())
+                {
+                    Value = dataReader["position"] + "";
+                }
+
+                if (Value.Equals("0", StringComparison.Ordinal))
+                {
+                    EmpOrders = new EmployeeOrders(connection, " oi");
+                    EmpOrders.Show();
+                    this.Hide();
+
+
+                }
+                else
+                {
+                    managerView = new Manager(connection);
+                    managerView.Show();
+                    this.Hide();
+                }
+
+                //EmpOrders = new EmployeeOrders(connection, " oi");
+                //EmpOrders.Show();
+                //this.Hide();
+                //this.Close();
 
             }
             else
             {
-                managerView = new Manager();
-                managerView.Show();
-                this.Hide();
+                MessageBox.Show("User or Password is not correct");
             }
-
-            //EmpOrders = new EmployeeOrders(connection, " oi");
-            //EmpOrders.Show();
-            //this.Hide();
-            //this.Close();
-
-           
-
+            dataReader.Close();
         }
     }
 }
