@@ -61,16 +61,36 @@ namespace ClientServerProject
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //string query="select * from employes"
+            string Value="";
+            string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"'";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlDataReader dataReader = cmd.ExecuteReader();
+            
+            while(dataReader.Read()){
+                Value = dataReader["position"] + "";
+            }
+
+            if (Value.Equals("0", StringComparison.Ordinal))
+            {
+                EmpOrders = new EmployeeOrders(connection, " oi");
+                EmpOrders.Show();
+                this.Hide();
+                
+
+            }
+            else
+            {
+                managerView = new Manager();
+                managerView.Show();
+                this.Hide();
+            }
 
             //EmpOrders = new EmployeeOrders(connection, " oi");
             //EmpOrders.Show();
             //this.Hide();
             //this.Close();
 
-            managerView = new Manager();
-            managerView.Show();
-            this.Hide();
+           
 
         }
     }
