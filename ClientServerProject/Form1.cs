@@ -62,43 +62,46 @@ namespace ClientServerProject
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string Value="";
+            int count = 0;
             string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"'";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             MySqlDataReader dataReader = cmd.ExecuteReader();
-            if (dataReader.RecordsAffected!=0)
-            {
 
+            
                 while (dataReader.Read())
                 {
                     Value = dataReader["position"] + "";
+                    count++;
                 }
 
-                if (Value.Equals("0", StringComparison.Ordinal))
+                if (count > 0)
                 {
-                    EmpOrders = new EmployeeOrders(connection, " oi");
-                    EmpOrders.Show();
-                    this.Hide();
+                    if (Value.Equals("0", StringComparison.Ordinal))
+                    {
+                        EmpOrders = new EmployeeOrders(connection, " oi");
+                        EmpOrders.Show();
+                        this.Hide();
 
 
-                }
-                else
-                {
-                    managerView = new Manager(connection);
-                    managerView.Show();
-                    this.Hide();
-                }
+                    }
+                    else
+                    {
+                        if (Value.Equals("1", StringComparison.Ordinal))
+                        {
+                            managerView = new Manager(connection);
+                            managerView.Show();
+                            this.Hide();
+                        }
 
-                //EmpOrders = new EmployeeOrders(connection, " oi");
-                //EmpOrders.Show();
-                //this.Hide();
-                //this.Close();
+                    }
+
 
             }
             else
             {
                 MessageBox.Show("User or Password is not correct");
             }
-            dataReader.Close();
+                dataReader.Close();
         }
     }
 }
