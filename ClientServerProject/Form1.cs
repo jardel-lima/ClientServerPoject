@@ -16,6 +16,7 @@ namespace ClientServerProject
         private MySqlConnection connection;
         private DBconnect db;
         private EmployeeOrders EmpOrders;
+        private Manager managerView;
 
         public Form1()
         {
@@ -60,11 +61,16 @@ namespace ClientServerProject
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            EmpOrders = new EmployeeOrders(connection, " oi");
-            EmpOrders.Show();
-            this.Hide();
+            //string query="select * from employes"
+
+            //EmpOrders = new EmployeeOrders(connection, " oi");
+            //EmpOrders.Show();
+            //this.Hide();
             //this.Close();
-            
+
+            managerView = new Manager();
+            managerView.Show();
+            managerView.Hide();
 
         }
     }
