@@ -70,7 +70,7 @@ namespace ClientServerProject
 
             managerView = new Manager();
             managerView.Show();
-            managerView.Hide();
+            this.Hide();
 
         }
     }
