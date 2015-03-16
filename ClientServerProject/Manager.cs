@@ -13,7 +13,7 @@ namespace ClientServerProject
 {
     public partial class Manager : Form
     {
-        private MySqlConnection connection;
+        private MySqlConnection connection=null;
         private FormEmployee FormEmp;
 
         public Manager(MySqlConnection con)
