@@ -70,7 +70,7 @@ namespace ClientServerProject
             
                 while (dataReader.Read())
                 {
-                    Value = dataReader["position"] + "";
+                    Value = dataReader["position"].ToString();
                     count++;
                 }
 
