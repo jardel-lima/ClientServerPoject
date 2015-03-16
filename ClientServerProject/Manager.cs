@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,12 @@ namespace ClientServerProject
 {
     public partial class Manager : Form
     {
-        public Manager()
+        private MySqlConnection connection;
+        private FormEmployee FormEmp;
+
+        public Manager(MySqlConnection con)
         {
+            connection = con;
             InitializeComponent();
         }
 
@@ -26,5 +31,18 @@ namespace ClientServerProject
         {
 
         }
+
+        private void Manager_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEmployees_Click(object sender, EventArgs e)
+        {
+            FormEmp = new FormEmployee(connection);
+            FormEmp.ShowDialog();
+        }
+
+       
     }
 }
