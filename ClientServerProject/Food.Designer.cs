@@ -44,24 +44,27 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(107, 49);
+            this.label1.Location = new System.Drawing.Point(190, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "MENU";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // dgMenu
             // 
+            this.dgMenu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMenu.Location = new System.Drawing.Point(12, 81);
+            this.dgMenu.MultiSelect = false;
             this.dgMenu.Name = "dgMenu";
-            this.dgMenu.Size = new System.Drawing.Size(240, 281);
+            this.dgMenu.Size = new System.Drawing.Size(424, 281);
             this.dgMenu.TabIndex = 1;
-            this.dgMenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMenu_CellContentClick);
+            this.dgMenu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMenu_CellContentClick);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(336, 259);
+            this.btnEdit.Location = new System.Drawing.Point(524, 258);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 2;
@@ -71,7 +74,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(476, 259);
+            this.btnAdd.Location = new System.Drawing.Point(664, 258);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 3;
@@ -82,7 +85,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(399, 84);
+            this.label2.Location = new System.Drawing.Point(440, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 4;
@@ -90,7 +93,7 @@
             // 
             // txtDishe
             // 
-            this.txtDishe.Location = new System.Drawing.Point(476, 81);
+            this.txtDishe.Location = new System.Drawing.Point(517, 77);
             this.txtDishe.Name = "txtDishe";
             this.txtDishe.Size = new System.Drawing.Size(100, 20);
             this.txtDishe.TabIndex = 5;
@@ -98,7 +101,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(401, 124);
+            this.label3.Location = new System.Drawing.Point(442, 120);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 6;
@@ -107,7 +110,7 @@
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(476, 117);
+            this.txtPrice.Location = new System.Drawing.Point(517, 113);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(100, 20);
             this.txtPrice.TabIndex = 7;
@@ -115,7 +118,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(399, 168);
+            this.label4.Location = new System.Drawing.Point(440, 164);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 13);
             this.label4.TabIndex = 8;
@@ -123,7 +126,7 @@
             // 
             // txtDesc
             // 
-            this.txtDesc.Location = new System.Drawing.Point(476, 165);
+            this.txtDesc.Location = new System.Drawing.Point(517, 161);
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(222, 51);
             this.txtDesc.TabIndex = 9;
