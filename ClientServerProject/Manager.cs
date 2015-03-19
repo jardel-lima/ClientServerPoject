@@ -15,6 +15,7 @@ namespace ClientServerProject
     {
         private MySqlConnection connection=null;
         private FormEmployee FormEmp;
+        private Food food;
 
         public Manager(MySqlConnection con)
         {
@@ -41,6 +42,12 @@ namespace ClientServerProject
         {
             FormEmp = new FormEmployee(connection);
             FormEmp.ShowDialog();
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            food = new Food(connection);
+            food.ShowDialog();
         }
 
        

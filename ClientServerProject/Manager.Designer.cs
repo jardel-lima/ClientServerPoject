@@ -185,6 +185,7 @@
             this.btnMenu.TabIndex = 16;
             this.btnMenu.Text = "Menu";
             this.btnMenu.UseVisualStyleBackColor = true;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // Manager
             // 
