@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGVOrders = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
+            this.btnNewOrder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,29 +61,29 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
-            // btnNew
+            // btnNewOrder
             // 
-            this.btnNew.Location = new System.Drawing.Point(180, 218);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 23);
-            this.btnNew.TabIndex = 3;
-            this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.button2_Click);
+            this.btnNewOrder.Location = new System.Drawing.Point(180, 218);
+            this.btnNewOrder.Name = "btnNewOrder";
+            this.btnNewOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnNewOrder.TabIndex = 3;
+            this.btnNewOrder.Text = "New Order";
+            this.btnNewOrder.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
             // 
             // EmployeeOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(320, 300);
-            this.Controls.Add(this.btnNew);
+            this.Controls.Add(this.btnNewOrder);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.dataGVOrders);
             this.Controls.Add(this.label1);
             this.Name = "EmployeeOrders";
             this.Text = "EmployeeOrders";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).EndInit();
             this.Load += new System.EventHandler(this.EmployeeOrders_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,6 +94,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGVOrders;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Button btnNewOrder;
     }
 }

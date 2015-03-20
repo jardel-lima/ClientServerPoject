@@ -78,7 +78,7 @@ namespace ClientServerProject
                 {
                     if (Value.Equals("0", StringComparison.Ordinal))
                     {
-                        EmpOrders = new EmployeeOrders(connection, " oi");
+                        EmpOrders = new EmployeeOrders(connection);
                         EmpOrders.Show();
                         this.Hide();
 

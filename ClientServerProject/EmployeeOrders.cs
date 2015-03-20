@@ -13,28 +13,28 @@ namespace ClientServerProject
 {
     public partial class EmployeeOrders : Form
     {
-        private MySqlConnection connection;
-        private String y;
-
-        public EmployeeOrders(MySqlConnection con, String x)
+        private MySqlConnection connection = null;
+        private Order orderForm;
+        public EmployeeOrders(MySqlConnection con)
         {
             connection = con;
             InitializeComponent();
-            y = x;
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void EmployeeOrders_Load(object sender, EventArgs e)
         {
             if (connection != null)
             {
-                Text = "Connected" + y;
+                
             }
+        }
+
+        private void btnNewOrder_Click(object sender, EventArgs e)
+        {
+            orderForm = new Order(connection);
+            orderForm.ShowDialog();
         }
     }
 }
