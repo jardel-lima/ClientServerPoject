@@ -17,6 +17,9 @@ namespace ClientServerProject
         private DataSet ds;
         private MySqlDataAdapter mcmd;
         int empID;
+        int empIdDelete;
+        private int rowIndex = 0;
+
 
 
         public FormEmployee(MySqlConnection con)
@@ -193,6 +196,57 @@ namespace ClientServerProject
             {
                 MessageBox.Show("One of the fields is empty!!!", "Message");
             }
+        }
+
+        
+
+        private void delete()
+        {
+            string query = "DELETE FROM Employees WHERE EmployeeID=" + empIdDelete;
+
+            if (connection != null)
+            {
+                try
+                {
+                    MySqlCommand cmd = connection.CreateCommand();
+                    cmd.CommandText = query;
+                    cmd.ExecuteNonQuery();
+                    LoadData();
+                    clearTextBox();
+                    MessageBox.Show("Employee deleted!!!", "Message");
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Erro: " + ex.Message, "Message");
+                }
+            }
+            else
+            {
+                MessageBox.Show("You are not connected!!!", "Message");
+            }
+        }
+
+        private void dgEmployees_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewRow row = this.dgEmployees.Rows[e.RowIndex];
+            if (e.Button == MouseButtons.Right)
+            {
+                this.dgEmployees.Rows[e.RowIndex].Selected = true;
+                this.rowIndex = e.RowIndex;
+                this.dgEmployees.CurrentCell = this.dgEmployees.Rows[e.RowIndex].Cells[0];
+                empIdDelete = Convert.ToInt16(row.Cells["ID"].Value.ToString());
+                this.contextMenuStrip1.Show(this.dgEmployees, e.Location);
+                
+                contextMenuStrip1.Show(Cursor.Position);
+               
+                
+            }
+        }
+
+        private void contextMenuStrip1_MouseClick(object sender, MouseEventArgs e)
+        {
+            delete();
         }
     }
 }
