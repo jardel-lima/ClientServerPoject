@@ -30,7 +30,7 @@ namespace ClientServerProject
             db.uid = "f2014_user24";
             db.password = "f2014_user24";
             db.database = "f2014_user24";
-            connect();
+            //connect();
         }
 
         private void connect()
@@ -61,6 +61,7 @@ namespace ClientServerProject
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            connect();
             string Value="";
             int count = 0;
             string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"'";
@@ -73,7 +74,7 @@ namespace ClientServerProject
                     Value = dataReader["position"].ToString();
                     count++;
                 }
-
+                dataReader.Close();
                 if (count > 0)
                 {
                     if (Value.Equals("0", StringComparison.Ordinal))
@@ -101,7 +102,7 @@ namespace ClientServerProject
             {
                 MessageBox.Show("User or Password is not correct");
             }
-                dataReader.Close();
+                
         }
     }
 }
