@@ -15,9 +15,13 @@ namespace ClientServerProject
     {
         private MySqlConnection connection = null;
         private Order orderForm;
-        public EmployeeOrders(MySqlConnection con)
+        private int userId;
+        private string userLname;
+        public EmployeeOrders(MySqlConnection con, int id, string lname)
         {
             connection = con;
+            userId = id;
+            userLname = lname;
             InitializeComponent();
             
         }
@@ -33,7 +37,7 @@ namespace ClientServerProject
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
-            orderForm = new Order(connection);
+            orderForm = new Order(connection, userId, userLname);
             orderForm.ShowDialog();
         }
     }

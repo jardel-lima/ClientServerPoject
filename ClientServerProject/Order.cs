@@ -16,10 +16,13 @@ namespace ClientServerProject
         private MySqlConnection connection;
         private DataSet ds;
         private MySqlDataAdapter mcmd;
-        int empID;
+        private int userId;
+        private string userLname;
 
-        public Order(MySqlConnection conn)
+        public Order(MySqlConnection conn, int id, string lname)
         {
+            userId = id;
+            userLname = lname;
             connection = conn;
             InitializeComponent();
         }

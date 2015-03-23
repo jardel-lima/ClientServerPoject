@@ -17,6 +17,8 @@ namespace ClientServerProject
         private DBconnect db;
         private EmployeeOrders EmpOrders;
         private Manager managerView;
+        private int userId;
+        private string userLname;
 
         public Form1()
         {
@@ -64,14 +66,16 @@ namespace ClientServerProject
             connect();
             string Value="";
             int count = 0;
+            userId = int.Parse(txtUser.Text.ToString());
             string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"'";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             MySqlDataReader dataReader = cmd.ExecuteReader();
 
-            
+                
                 while (dataReader.Read())
                 {
                     Value = dataReader["position"].ToString();
+                    userLname = dataReader["lastName"].ToString();
                     count++;
                 }
                 dataReader.Close();
@@ -79,7 +83,7 @@ namespace ClientServerProject
                 {
                     if (Value.Equals("0", StringComparison.Ordinal))
                     {
-                        EmpOrders = new EmployeeOrders(connection);
+                        EmpOrders = new EmployeeOrders(connection, userId, userLname);
                         EmpOrders.Show();
                         this.Hide();
 
@@ -89,7 +93,7 @@ namespace ClientServerProject
                     {
                         if (Value.Equals("1", StringComparison.Ordinal))
                         {
-                            managerView = new Manager(connection);
+                            managerView = new Manager(connection, userId, userLname);
                             managerView.Show();
                             this.Hide();
                         }

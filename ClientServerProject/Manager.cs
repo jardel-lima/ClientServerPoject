@@ -18,11 +18,14 @@ namespace ClientServerProject
         private FormEmployee FormEmp;
         private MySqlDataAdapter mcmd;
         private DataSet ds;
-        
+        private int userId;
+        private string userLname;
         private Food food;
 
-        public Manager(MySqlConnection con)
+        public Manager(MySqlConnection con, int id, string lname )
         {
+            userId = id;
+            userLname = lname;
             connection = con;
             InitializeComponent();
         }
@@ -30,11 +33,6 @@ namespace ClientServerProject
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Search(int.Parse(txtId.Text.ToString().Trim()));
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void Manager_Load(object sender, EventArgs e)
