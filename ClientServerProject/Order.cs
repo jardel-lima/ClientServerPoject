@@ -58,6 +58,8 @@ namespace ClientServerProject
             dataGVMenu.Columns.Add(cmb);
             dataGVMenu.Columns[4].Width = 40;
 
+            dataGVMenu.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
             if (connection != null)
             {
                 try
@@ -89,7 +91,82 @@ namespace ClientServerProject
         private void Order_Load(object sender, EventArgs e)
         {
             loadMenu();
+            initiateOrderGrid();
         }
+
+        private void addItems(){
+
+            int rows = dataGVMenu.RowCount;
+
+            for (int i = 0; i < rows; i++)
+            {
+                int qty;
+                try {
+                   qty = int.Parse(dataGVMenu.Rows[i].Cells[4].Value.ToString());
+                   dataGVMenu.Rows[i].Cells[4].Value = "0";
+                }
+                catch (Exception ex)
+                {
+                    qty = 0;
+                }
+               
+
+                if (qty > 0)
+                {
+                    int id = int.Parse(dataGVMenu.Rows[i].Cells[0].Value.ToString());
+                    string dish = dataGVMenu.Rows[i].Cells[1].Value.ToString();
+                    double price = double.Parse(dataGVMenu.Rows[i].Cells[3].Value.ToString());
+                    addOrUpdateItem(id, dish, qty, price);
+                }
+            }
+        }
+
+        private void initiateOrderGrid(){
+            dataGVOrder.ColumnCount = 4;
+            dataGVOrder.Columns[0].Name = "ID";
+            dataGVOrder.Columns[1].Name = "Dish";
+            dataGVOrder.Columns[2].Name = "Qty";
+            dataGVOrder.Columns[3].Name = "price";
+            dataGVOrder.Columns[0].Width = 30;
+            dataGVOrder.Columns[1].Width = 150;
+            dataGVOrder.Columns[2].Width = 30;
+            dataGVOrder.Columns[3].Width = 50;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            addItems();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGVOrder.SelectedRows)
+            {
+                dataGVOrder.Rows.Remove(row);
+            }
+        }
+
+        private void addOrUpdateItem(int dishId, string dishName, int dishQty, double dishPrice)
+        {
+            bool added = false;
+            foreach (DataGridViewRow row in dataGVOrder.Rows)
+            {   
+                int id = int.Parse(row.Cells[0].Value.ToString());
+                if (id == dishId)
+                {
+                    row.Cells[2].Value = dishQty;
+                    row.Cells[3].Value = string.Format("{0:0.00}", dishPrice * dishQty);
+                    added = true;
+                    break;
+                }
+            }
+
+            if (!added)
+            {
+                dataGVOrder.Rows.Add(dishId, dishName, dishQty, string.Format("{0:0.00}", dishPrice * dishQty));
+            }
+        }
+       
     }
 
     

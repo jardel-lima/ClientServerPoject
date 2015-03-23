@@ -37,6 +37,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrder)).BeginInit();
             this.SuspendLayout();
@@ -54,10 +55,12 @@
             // 
             this.dataGVMenu.AllowUserToAddRows = false;
             this.dataGVMenu.AllowUserToDeleteRows = false;
+            this.dataGVMenu.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGVMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGVMenu.Location = new System.Drawing.Point(12, 51);
             this.dataGVMenu.MultiSelect = false;
             this.dataGVMenu.Name = "dataGVMenu";
+            this.dataGVMenu.RowHeadersWidth = 25;
             this.dataGVMenu.Size = new System.Drawing.Size(497, 329);
             this.dataGVMenu.TabIndex = 1;
             // 
@@ -72,10 +75,14 @@
             // 
             // dataGVOrder
             // 
+            this.dataGVOrder.AllowUserToAddRows = false;
+            this.dataGVOrder.AllowUserToDeleteRows = false;
             this.dataGVOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGVOrder.Location = new System.Drawing.Point(558, 51);
             this.dataGVOrder.Name = "dataGVOrder";
-            this.dataGVOrder.Size = new System.Drawing.Size(338, 277);
+            this.dataGVOrder.ReadOnly = true;
+            this.dataGVOrder.RowHeadersWidth = 30;
+            this.dataGVOrder.Size = new System.Drawing.Size(293, 277);
             this.dataGVOrder.TabIndex = 3;
             // 
             // label3
@@ -122,12 +129,24 @@
             this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(558, 335);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 9;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 456);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -158,5 +177,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
