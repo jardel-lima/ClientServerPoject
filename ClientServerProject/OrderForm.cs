@@ -23,8 +23,9 @@ namespace ClientServerProject
         private double subTotal = 0.0;
         private double taxes = 0.0;
         private double total = 0.0;
+        private EmployeeForm parentForm;
 
-        public OrderForm(MySqlConnection conn, int id, string lname)
+        public OrderForm(MySqlConnection conn, EmployeeForm empForm, int id, string lname)
         {
             userId = id;
             userLname = lname;
@@ -32,6 +33,7 @@ namespace ClientServerProject
             InitializeComponent();
             txtEmployee.Text = "Employee: " + lname;
             txtId.Text = "Id: " + id;
+            parentForm = empForm;
         }
 
         private void loadMenu()
@@ -243,8 +245,9 @@ namespace ClientServerProject
                     inserteOrderDetails(orderId);
 
                     MessageBox.Show("Thank you for your purchase", "Thank you", MessageBoxButtons.OK);
+                    parentForm.LoadData();
                     this.Close();
-
+                    
                 }
                 catch (MySqlException ex)
                 {
