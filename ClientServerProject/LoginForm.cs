@@ -61,6 +61,12 @@ namespace ClientServerProject
             }
         }
 
+        private void cleanFields()
+        {
+            txtUser.Text = "";
+            txtPassword.Text = "";
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             connect();
@@ -79,6 +85,7 @@ namespace ClientServerProject
                     count++;
                 }
                 dataReader.Close();
+                cleanFields();
                 if (count > 0)
                 {
                     if (Value.Equals("0", StringComparison.Ordinal))
