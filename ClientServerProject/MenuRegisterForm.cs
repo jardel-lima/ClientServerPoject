@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace ClientServerProject
 {
-    public partial class Food : Form
+    public partial class MenuRegisterForm : Form
     {
         private MySqlConnection connection = null;
         private MySqlDataAdapter mcmd;
         private DataSet ds;
         int menuID;
-        public Food(MySqlConnection con)
+        public MenuRegisterForm(MySqlConnection con)
         {
             connection = con;
             InitializeComponent();

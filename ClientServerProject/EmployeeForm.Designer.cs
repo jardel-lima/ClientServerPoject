@@ -1,6 +1,6 @@
 ﻿namespace ClientServerProject
 {
-    partial class EmployeeOrders
+    partial class EmployeeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -60,6 +60,7 @@
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnNewOrder
             // 
@@ -71,7 +72,7 @@
             this.btnNewOrder.UseVisualStyleBackColor = true;
             this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
             // 
-            // EmployeeOrders
+            // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -80,8 +81,9 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.dataGVOrders);
             this.Controls.Add(this.label1);
-            this.Name = "EmployeeOrders";
+            this.Name = "EmployeeForm";
             this.Text = "EmployeeOrders";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeOrders_FormClosing);
             this.Load += new System.EventHandler(this.EmployeeOrders_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).EndInit();
             this.ResumeLayout(false);

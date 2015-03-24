@@ -12,21 +12,23 @@ using System.Windows.Forms;
 
 namespace ClientServerProject
 {
-    public partial class Manager : Form
+    public partial class ManagerForm : Form
     {
         private MySqlConnection connection=null;
-        private FormEmployee FormEmp;
+        private EmployeeRegisterForm FormEmp;
         private MySqlDataAdapter mcmd;
         private DataSet ds;
         private int userId;
         private string userLname;
-        private Food food;
+        private MenuRegisterForm food;
+        private LoginForm mainForm;
 
-        public Manager(MySqlConnection con, int id, string lname )
+        public ManagerForm(MySqlConnection con, LoginForm loginForm, int id, string lname )
         {
             userId = id;
             userLname = lname;
             connection = con;
+            mainForm = loginForm;
             InitializeComponent();
         }
 
@@ -95,19 +97,24 @@ namespace ClientServerProject
 
         private void btnEmployees_Click(object sender, EventArgs e)
         {
-            FormEmp = new FormEmployee(connection);
+            FormEmp = new EmployeeRegisterForm(connection);
             FormEmp.ShowDialog();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            food = new Food(connection);
+            food = new MenuRegisterForm(connection);
             food.ShowDialog();
         }
 
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mainForm.Show();
         }
 
        

@@ -11,15 +11,17 @@ using System.Windows.Forms;
 
 namespace ClientServerProject
 {
-    public partial class EmployeeOrders : Form
+    public partial class EmployeeForm : Form
     {
         private MySqlConnection connection = null;
-        private Order orderForm;
+        private OrderForm orderForm;
         private int userId;
         private string userLname;
-        public EmployeeOrders(MySqlConnection con, int id, string lname)
+        private LoginForm mainForm;
+        public EmployeeForm(MySqlConnection con, LoginForm form, int id, string lname)
         {
             connection = con;
+            mainForm = form;
             userId = id;
             userLname = lname;
             InitializeComponent();
@@ -37,8 +39,18 @@ namespace ClientServerProject
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
-            orderForm = new Order(connection, userId, userLname);
+            orderForm = new OrderForm(connection, userId, userLname);
             orderForm.ShowDialog();
+        }
+
+        private void EmployeeOrders_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mainForm.Show();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ClientServerProject
 {
-    partial class Order
+    partial class OrderForm
     {
         /// <summary>
         /// Required designer variable.

@@ -11,16 +11,16 @@ using System.Windows.Forms;
 
 namespace ClientServerProject
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
         private MySqlConnection connection;
         private DBconnect db;
-        private EmployeeOrders EmpOrders;
-        private Manager managerView;
+        private EmployeeForm EmpOrders;
+        private ManagerForm managerView;
         private int userId;
         private string userLname;
 
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
         }
@@ -83,7 +83,7 @@ namespace ClientServerProject
                 {
                     if (Value.Equals("0", StringComparison.Ordinal))
                     {
-                        EmpOrders = new EmployeeOrders(connection, userId, userLname);
+                        EmpOrders = new EmployeeForm(connection, this,userId, userLname);
                         EmpOrders.Show();
                         this.Hide();
 
@@ -93,7 +93,7 @@ namespace ClientServerProject
                     {
                         if (Value.Equals("1", StringComparison.Ordinal))
                         {
-                            managerView = new Manager(connection, userId, userLname);
+                            managerView = new ManagerForm(connection, this ,userId, userLname);
                             managerView.Show();
                             this.Hide();
                         }

@@ -1,6 +1,6 @@
 ﻿namespace ClientServerProject
 {
-    partial class Food
+    partial class MenuRegisterForm
     {
         /// <summary>
         /// Required designer variable.

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ClientServerProject
 {
-    public partial class FormEmployee : Form
+    public partial class EmployeeRegisterForm : Form
     {
         private MySqlConnection connection=null;
         private DataSet ds;
@@ -22,7 +22,7 @@ namespace ClientServerProject
 
 
 
-        public FormEmployee(MySqlConnection con)
+        public EmployeeRegisterForm(MySqlConnection con)
         {
             connection = con;
             InitializeComponent();

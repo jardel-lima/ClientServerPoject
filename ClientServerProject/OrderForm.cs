@@ -11,15 +11,16 @@ using System.Windows.Forms;
 
 namespace ClientServerProject
 {  
-    public partial class Order : Form
+    public partial class OrderForm : Form
     {
         private MySqlConnection connection;
         private DataSet ds;
         private MySqlDataAdapter mcmd;
+        private LoginForm mainForm;
         private int userId;
         private string userLname;
 
-        public Order(MySqlConnection conn, int id, string lname)
+        public OrderForm(MySqlConnection conn, int id, string lname)
         {
             userId = id;
             userLname = lname;

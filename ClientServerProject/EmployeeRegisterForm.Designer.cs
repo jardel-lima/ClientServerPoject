@@ -1,6 +1,6 @@
 ﻿namespace ClientServerProject
 {
-    partial class FormEmployee
+    partial class EmployeeRegisterForm
     {
         /// <summary>
         /// Required designer variable.
