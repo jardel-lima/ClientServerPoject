@@ -35,6 +35,7 @@ namespace ClientServerProject
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Search(int.Parse(txtId.Text.ToString().Trim()));
+            SearchOrderByEmp(int.Parse(txtId.Text.ToString().Trim()));
         }
 
         private void Manager_Load(object sender, EventArgs e)
@@ -110,6 +111,7 @@ namespace ClientServerProject
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             LoadData();
+            SearchAllOrder();
         }
 
         private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -117,6 +119,126 @@ namespace ClientServerProject
             mainForm.Show();
         }
 
+        private void btnSearchByDate_Click(object sender, EventArgs e)
+        {
+            string date1, date2;
+            date1 = dateFrom.Value.ToString("yyyy-MM-dd");
+            date2 = dateTo.Value.ToString("yyyy-MM-dd");
+            SearchByDate(date1,date2);
+        }
+
+        private void SearchByDate( string date1, string date2)
+        {
+            string query = "SELECT orderId 'Order ID', `date` AS 'Date', price AS 'Price', Employees_EmployeeID as 'Employee ID' FROM `Order` where `date` between '" + date1 + "' and '" + date2 + "'";
+            
+
+            if (connection != null)
+            {
+                try
+                {
+                    //Create Command
+                    mcmd = new MySqlDataAdapter(query, connection);
+                    ds = new DataSet();
+                    new MySqlCommandBuilder(mcmd);
+
+                    mcmd.Fill(ds, "Person details");
+
+
+                    dgOrders.DataSource = ds.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Try to connect");
+            }
+        }
+
+        private void SearchOrderByEmp(int ID)
+        {
+            string query = "SELECT orderId 'Order ID', `date` AS 'Date', price AS 'Price' FROM `Order` where Employees_EmployeeID="+ID;
+
+
+            if (connection != null)
+            {
+                try
+                {
+                    //Create Command
+                    mcmd = new MySqlDataAdapter(query, connection);
+                    ds = new DataSet();
+                    new MySqlCommandBuilder(mcmd);
+
+                    mcmd.Fill(ds, "Person details");
+
+
+                    dgOrders.DataSource = ds.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Try to connect");
+            }
+        }
+
+        private void SearchAllOrder()
+        {
+            string query = "SELECT orderId 'Order ID', `date` AS 'Date', price AS 'Price', Employees_EmployeeID as 'Employee ID' FROM `Order`";
+
+
+            if (connection != null)
+            {
+                try
+                {
+                    //Create Command
+                    mcmd = new MySqlDataAdapter(query, connection);
+                    ds = new DataSet();
+                    new MySqlCommandBuilder(mcmd);
+
+                    mcmd.Fill(ds, "Person details");
+
+
+                    dgOrders.DataSource = ds.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Try to connect");
+            }
+        }
+
+        private void dgEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        
+
        
+
+
+
+
     }
-}
+    }
+
+
+
+   
+

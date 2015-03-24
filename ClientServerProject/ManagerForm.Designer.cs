@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgOrders = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.label3 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateFrom = new System.Windows.Forms.DateTimePicker();
+            this.dateTo = new System.Windows.Forms.DateTimePicker();
             this.dgEmployees = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSearchByDate = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.btnEmployees = new System.Windows.Forms.Button();
             this.btnMenu = new System.Windows.Forms.Button();
             this.btnShowAll = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,13 +58,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Employees";
             // 
-            // dataGridView2
+            // dgOrders
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(263, 130);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(216, 270);
-            this.dataGridView2.TabIndex = 2;
+            this.dgOrders.AllowUserToAddRows = false;
+            this.dgOrders.AllowUserToDeleteRows = false;
+            this.dgOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOrders.Location = new System.Drawing.Point(263, 130);
+            this.dgOrders.Name = "dgOrders";
+            this.dgOrders.ReadOnly = true;
+            this.dgOrders.Size = new System.Drawing.Size(216, 270);
+            this.dgOrders.TabIndex = 2;
             // 
             // label2
             // 
@@ -99,27 +102,32 @@
             this.txtId.Size = new System.Drawing.Size(100, 20);
             this.txtId.TabIndex = 6;
             // 
-            // dateTimePicker1
+            // dateFrom
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(573, 130);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 7;
+            this.dateFrom.Location = new System.Drawing.Point(573, 130);
+            this.dateFrom.Name = "dateFrom";
+            this.dateFrom.Size = new System.Drawing.Size(200, 20);
+            this.dateFrom.TabIndex = 7;
             // 
-            // dateTimePicker2
+            // dateTo
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(573, 180);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 8;
+            this.dateTo.Location = new System.Drawing.Point(573, 180);
+            this.dateTo.Name = "dateTo";
+            this.dateTo.Size = new System.Drawing.Size(200, 20);
+            this.dateTo.TabIndex = 8;
             // 
             // dgEmployees
             // 
+            this.dgEmployees.AllowUserToAddRows = false;
+            this.dgEmployees.AllowUserToDeleteRows = false;
             this.dgEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgEmployees.Location = new System.Drawing.Point(12, 130);
+            this.dgEmployees.MultiSelect = false;
             this.dgEmployees.Name = "dgEmployees";
+            this.dgEmployees.ReadOnly = true;
             this.dgEmployees.Size = new System.Drawing.Size(216, 270);
             this.dgEmployees.TabIndex = 9;
+            this.dgEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmployees_CellClick);
             // 
             // label4
             // 
@@ -149,14 +157,15 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // button2
+            // btnSearchByDate
             // 
-            this.button2.Location = new System.Drawing.Point(698, 232);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Search";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSearchByDate.Location = new System.Drawing.Point(698, 232);
+            this.btnSearchByDate.Name = "btnSearchByDate";
+            this.btnSearchByDate.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchByDate.TabIndex = 13;
+            this.btnSearchByDate.Text = "Search";
+            this.btnSearchByDate.UseVisualStyleBackColor = true;
+            this.btnSearchByDate.Click += new System.EventHandler(this.btnSearchByDate_Click);
             // 
             // label6
             // 
@@ -206,17 +215,17 @@
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnSearchByDate);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dgEmployees);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTo);
+            this.Controls.Add(this.dateFrom);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dgOrders);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -224,7 +233,7 @@
             this.Text = "Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManagerForm_FormClosing);
             this.Load += new System.EventHandler(this.Manager_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -234,18 +243,18 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgOrders;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateFrom;
+        private System.Windows.Forms.DateTimePicker dateTo;
         private System.Windows.Forms.DataGridView dgEmployees;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSearchByDate;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnEmployees;
         private System.Windows.Forms.Button btnMenu;
