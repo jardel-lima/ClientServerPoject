@@ -17,6 +17,8 @@ namespace ClientServerProject
         private MySqlDataAdapter mcmd;
         private DataSet ds;
         int menuID;
+        int IdDelete;
+        private int rowIndex = 0;
         public MenuRegisterForm(MySqlConnection con)
         {
             connection = con;
@@ -161,6 +163,59 @@ namespace ClientServerProject
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void delete()
+        {
+            string query = "DELETE FROM Menu WHERE menuId=" + IdDelete;
+
+            if (connection != null)
+            {
+                try
+                {
+                    MySqlCommand cmd = connection.CreateCommand();
+                    cmd.CommandText = query;
+                    cmd.ExecuteNonQuery();
+                    LoadData();
+                    clearTextBox();
+                    MessageBox.Show("Dishe deleted!!!", "Message");
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Erro: " + ex.Message, "Message");
+                }
+            }
+            else
+            {
+                MessageBox.Show("You are not connected!!!", "Message");
+            }
+        }
+
+        private void dgMenus_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewRow row = this.dgMenu.Rows[e.RowIndex];
+            if (e.Button == MouseButtons.Right)
+            {
+                this.dgMenu.Rows[e.RowIndex].Selected = true;
+                this.rowIndex = e.RowIndex;
+                this.dgMenu.CurrentCell = this.dgMenu.Rows[e.RowIndex].Cells[0];
+                IdDelete = Convert.ToInt16(row.Cells["ID"].Value.ToString());
+                this.contextMenuStrip1.Show(this.dgMenu, e.Location);
+
+                contextMenuStrip1.Show(Cursor.Position);
+
+
+            }
+        }
+
+        
+   
+       
+
+        private void contextMenuStrip1_MouseClick_1(object sender, MouseEventArgs e)
+        {
+            delete();
         }
     }
 }
