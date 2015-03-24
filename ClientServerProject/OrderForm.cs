@@ -19,6 +19,7 @@ namespace ClientServerProject
         private LoginForm mainForm;
         private int userId;
         private string userLname;
+        private const double GST = 5.0 / 100.0;
 
         public OrderForm(MySqlConnection conn, int id, string lname)
         {
@@ -137,6 +138,7 @@ namespace ClientServerProject
         private void btnAdd_Click(object sender, EventArgs e)
         {
             addItems();
+            calculateTotal();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -145,6 +147,7 @@ namespace ClientServerProject
             {
                 dataGVOrder.Rows.Remove(row);
             }
+            calculateTotal();
         }
 
         private void addOrUpdateItem(int dishId, string dishName, int dishQty, double dishPrice)
@@ -166,6 +169,31 @@ namespace ClientServerProject
             {
                 dataGVOrder.Rows.Add(dishId, dishName, dishQty, string.Format("{0:0.00}", dishPrice * dishQty));
             }
+        }
+
+        private void calculateTotal()
+        {
+            int rowCount = dataGVOrder.RowCount;
+            double subTotal = 0.0;
+            double taxes = 0.0;
+            double total = 0.0;
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                subTotal += double.Parse(dataGVOrder.Rows[i].Cells[3].Value.ToString());
+            }
+
+            taxes = subTotal * GST;
+            total = subTotal + taxes;
+
+            txtSubTotal.Text = String.Format("Sub Total: {0:c}", subTotal);
+            txtTaxes.Text = String.Format("Taxes (GST 5%): {0:c}", taxes);
+            txtTotal.Text = String.Format("TOTAL: {0:c}", total);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
        
     }

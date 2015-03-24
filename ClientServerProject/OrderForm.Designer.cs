@@ -32,12 +32,14 @@
             this.dataGVMenu = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGVOrder = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.txtSubTotal = new System.Windows.Forms.Label();
+            this.txtTaxes = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnConfirm = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrder)).BeginInit();
             this.SuspendLayout();
@@ -85,32 +87,32 @@
             this.dataGVOrder.Size = new System.Drawing.Size(293, 277);
             this.dataGVOrder.TabIndex = 3;
             // 
-            // label3
+            // txtSubTotal
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(555, 434);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "SubTotal:";
+            this.txtSubTotal.AutoSize = true;
+            this.txtSubTotal.Location = new System.Drawing.Point(719, 335);
+            this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.Size = new System.Drawing.Size(53, 13);
+            this.txtSubTotal.TabIndex = 4;
+            this.txtSubTotal.Text = "SubTotal:";
             // 
-            // label4
+            // txtTaxes
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(661, 434);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Taxes";
+            this.txtTaxes.AutoSize = true;
+            this.txtTaxes.Location = new System.Drawing.Point(719, 357);
+            this.txtTaxes.Name = "txtTaxes";
+            this.txtTaxes.Size = new System.Drawing.Size(87, 13);
+            this.txtTaxes.TabIndex = 5;
+            this.txtTaxes.Text = "Taxes (GST 5%):";
             // 
-            // label5
+            // txtTotal
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(719, 434);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "TOTAL:";
+            this.txtTotal.AutoSize = true;
+            this.txtTotal.Location = new System.Drawing.Point(719, 387);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(45, 13);
+            this.txtTotal.TabIndex = 6;
+            this.txtTotal.Text = "TOTAL:";
             // 
             // label6
             // 
@@ -141,22 +143,43 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // Order
+            // btnConfirm
+            // 
+            this.btnConfirm.Location = new System.Drawing.Point(789, 421);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(75, 23);
+            this.btnConfirm.TabIndex = 10;
+            this.btnConfirm.Text = "Confirm";
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(708, 421);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 11;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 456);
+            this.ClientSize = new System.Drawing.Size(876, 456);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtTotal);
+            this.Controls.Add(this.txtTaxes);
+            this.Controls.Add(this.txtSubTotal);
             this.Controls.Add(this.dataGVOrder);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGVMenu);
             this.Controls.Add(this.label1);
-            this.Name = "Order";
+            this.Name = "OrderForm";
             this.Text = "Order";
             this.Load += new System.EventHandler(this.Order_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGVMenu)).EndInit();
@@ -172,11 +195,13 @@
         private System.Windows.Forms.DataGridView dataGVMenu;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGVOrder;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label txtSubTotal;
+        private System.Windows.Forms.Label txtTaxes;
+        private System.Windows.Forms.Label txtTotal;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
