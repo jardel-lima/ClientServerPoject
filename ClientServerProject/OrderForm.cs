@@ -20,6 +20,9 @@ namespace ClientServerProject
         private int userId;
         private string userLname;
         private const double GST = 5.0 / 100.0;
+        private double subTotal = 0.0;
+        private double taxes = 0.0;
+        private double total = 0.0;
 
         public OrderForm(MySqlConnection conn, int id, string lname)
         {
@@ -27,6 +30,8 @@ namespace ClientServerProject
             userLname = lname;
             connection = conn;
             InitializeComponent();
+            txtEmployee.Text = "Employee: " + lname;
+            txtId.Text = "Id: " + id;
         }
 
         private void loadMenu()
@@ -174,9 +179,9 @@ namespace ClientServerProject
         private void calculateTotal()
         {
             int rowCount = dataGVOrder.RowCount;
-            double subTotal = 0.0;
-            double taxes = 0.0;
-            double total = 0.0;
+            subTotal = 0.0;
+            taxes = 0.0;
+            total = 0.0;
 
             for (int i = 0; i < rowCount; i++)
             {
@@ -189,11 +194,98 @@ namespace ClientServerProject
             txtSubTotal.Text = String.Format("Sub Total: {0:c}", subTotal);
             txtTaxes.Text = String.Format("Taxes (GST 5%): {0:c}", taxes);
             txtTotal.Text = String.Format("TOTAL: {0:c}", total);
+
+            if (rowCount > 0)
+            {
+                btnConfirm.Enabled = true;
+            }
+            else
+            {
+                btnConfirm.Enabled = false;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Comfirm payment of "+string.Format("{0:c}",total), "Confirm", MessageBoxButtons.YesNo);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                confirmPurchase();
+            }
+        }
+
+        private void confirmPurchase()
+        {
+            insertOrder();
+        }
+
+        private void insertOrder()
+        {
+            DateTime today = DateTime.Today;
+            string date = today.ToString("yyyy-MM-dd");
+            string instruction = " INSERT INTO `Order`(`date`, `price`, `Employees_EmployeeID`) VALUES( '" + date + "', " + total + ", " + userId + ")";
+            long orderId;
+
+            if (connection != null)
+            {
+                try
+                {
+                    MySqlCommand cmd = connection.CreateCommand();
+                    cmd.CommandText = instruction;
+                    cmd.ExecuteNonQuery();
+                    orderId = cmd.LastInsertedId;
+                    inserteOrderDetails(orderId);
+
+                    MessageBox.Show("Thank you for your purchase", "Thank you", MessageBoxButtons.OK);
+                    this.Close();
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Erro: " + ex.Message, "Message");
+                }
+            }
+            else
+            {
+                MessageBox.Show("You are not connected!!!", "Message");
+            }
+        }
+
+        private void inserteOrderDetails(long orderId){
+            int rowCount = dataGVOrder.RowCount;
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                int menuId = int.Parse(dataGVOrder.Rows[i].Cells[0].Value.ToString());
+                int qty = int.Parse(dataGVOrder.Rows[i].Cells[2].Value.ToString());
+
+                string instruction = " INSERT INTO `orderDetails`(`Order_orderId`, `Menu_menuId`, `quantity`) VALUES( " + orderId + ", " + menuId + ", " + qty + ")";
+
+                if (connection != null)
+                {
+                    try
+                    {
+                        MySqlCommand cmd = connection.CreateCommand();
+                        cmd.CommandText = instruction;
+                        cmd.ExecuteNonQuery();
+                       
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Erro: " + ex.Message, "Message");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You are not connected!!!", "Message");
+                }
+            }
         }
        
     }
