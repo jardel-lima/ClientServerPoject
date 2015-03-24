@@ -243,10 +243,16 @@ namespace ClientServerProject
                 
             }
         }
-
+        
         private void contextMenuStrip1_MouseClick(object sender, MouseEventArgs e)
         {
-            delete();
+            DialogResult result = MessageBox.Show("Comfirm delete?", "Confirm", MessageBoxButtons.YesNo);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                delete();
+            }
+            
         }
     }
 }
