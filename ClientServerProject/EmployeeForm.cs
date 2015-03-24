@@ -15,6 +15,9 @@ namespace ClientServerProject
     {
         private MySqlConnection connection = null;
         private OrderForm orderForm;
+        
+        private DataSet ds;
+        private MySqlDataAdapter mcmd;
         private int userId;
         private string userLname;
         private LoginForm mainForm;
@@ -33,7 +36,8 @@ namespace ClientServerProject
         {
             if (connection != null)
             {
-                
+                LoadData();
+                userLastName.Text = userLname;
             }
         }
 
@@ -51,6 +55,37 @@ namespace ClientServerProject
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void LoadData()
+        {
+            string query = "SELECT orderId AS 'ID', `date` AS 'Date', price AS 'Price' FROM `Order` WHERE Employees_EmployeeID=" + userId;
+
+            if (connection != null)
+            {
+                try
+                {
+                    //Create Command
+                    mcmd = new MySqlDataAdapter(query, connection);
+                    ds = new DataSet();
+                    new MySqlCommandBuilder(mcmd);
+
+                    mcmd.Fill(ds, "Person details");
+
+
+                    dataGVOrders.DataSource = ds.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Try to connect");
+            }
         }
     }
 }
