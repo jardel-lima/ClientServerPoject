@@ -44,7 +44,7 @@ namespace ClientServerProject
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
-            orderForm = new OrderForm(connection, userId, userLname);
+            orderForm = new OrderForm(connection, this, userId, userLname);
             orderForm.ShowDialog();
         }
 
@@ -75,6 +75,7 @@ namespace ClientServerProject
 
 
                     dataGVOrders.DataSource = ds.Tables[0];
+                    getTotal();
                 }
                 catch (Exception ex)
                 {
@@ -87,6 +88,19 @@ namespace ClientServerProject
             {
                 MessageBox.Show("Try to connect");
             }
+            
+        }
+
+        private void getTotal()
+        {
+            int rowCount;
+            double total = 0.0;
+            rowCount = dataGVOrders.RowCount;
+            for (int i = 0; i < rowCount; i++)
+            {
+                total += double.Parse(dataGVOrders.Rows[i].Cells[2].Value.ToString());
+            }
+            txtTotal.Text = string.Format("TOTAL: {0:c}",total);
         }
     }
 }
