@@ -31,8 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGVOrders = new System.Windows.Forms.DataGridView();
             this.btnNewOrder = new System.Windows.Forms.Button();
-            this.user = new System.Windows.Forms.Label();
             this.userLastName = new System.Windows.Forms.Label();
+            this.IdUser = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,33 +67,33 @@
             this.btnNewOrder.UseVisualStyleBackColor = true;
             this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
             // 
-            // user
-            // 
-            this.user.AutoSize = true;
-            this.user.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.user.Location = new System.Drawing.Point(12, 21);
-            this.user.Name = "user";
-            this.user.Size = new System.Drawing.Size(51, 20);
-            this.user.TabIndex = 4;
-            this.user.Text = "User: ";
-            // 
             // userLastName
             // 
             this.userLastName.AutoSize = true;
             this.userLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userLastName.Location = new System.Drawing.Point(58, 21);
+            this.userLastName.Location = new System.Drawing.Point(12, 30);
             this.userLastName.Name = "userLastName";
             this.userLastName.Size = new System.Drawing.Size(113, 20);
             this.userLastName.TabIndex = 5;
             this.userLastName.Text = "userLastName";
+            // 
+            // IdUser
+            // 
+            this.IdUser.AutoSize = true;
+            this.IdUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdUser.Location = new System.Drawing.Point(12, 50);
+            this.IdUser.Name = "IdUser";
+            this.IdUser.Size = new System.Drawing.Size(57, 20);
+            this.IdUser.TabIndex = 7;
+            this.IdUser.Text = "userID";
             // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 398);
+            this.Controls.Add(this.IdUser);
             this.Controls.Add(this.userLastName);
-            this.Controls.Add(this.user);
             this.Controls.Add(this.btnNewOrder);
             this.Controls.Add(this.dataGVOrders);
             this.Controls.Add(this.label1);
@@ -112,7 +112,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGVOrders;
         private System.Windows.Forms.Button btnNewOrder;
-        private System.Windows.Forms.Label user;
         private System.Windows.Forms.Label userLastName;
+        private System.Windows.Forms.Label IdUser;
     }
 }

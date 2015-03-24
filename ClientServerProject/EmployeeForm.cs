@@ -37,7 +37,8 @@ namespace ClientServerProject
             if (connection != null)
             {
                 LoadData();
-                userLastName.Text = userLname;
+                userLastName.Text = "Employee: " + userLname;
+                IdUser.Text = "ID: " + userId;
             }
         }
 
