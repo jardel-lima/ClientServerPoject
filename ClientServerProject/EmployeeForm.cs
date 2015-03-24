@@ -58,7 +58,7 @@ namespace ClientServerProject
 
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             string query = "SELECT orderId AS 'ID', `date` AS 'Date', price AS 'Price' FROM `Order` WHERE Employees_EmployeeID=" + userId;
 
