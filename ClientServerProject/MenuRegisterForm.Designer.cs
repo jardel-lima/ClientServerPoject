@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dgMenu = new System.Windows.Forms.DataGridView();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -38,7 +39,11 @@
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDesc = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteDisheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgMenu)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -61,6 +66,7 @@
             this.dgMenu.Size = new System.Drawing.Size(424, 281);
             this.dgMenu.TabIndex = 1;
             this.dgMenu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMenu_CellContentClick);
+            this.dgMenu.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMenus_CellMouseUp);
             // 
             // btnEdit
             // 
@@ -132,11 +138,36 @@
             this.txtDesc.TabIndex = 9;
             this.txtDesc.Text = "";
             // 
-            // Food
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteDisheToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(140, 26);
+            this.contextMenuStrip1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.contextMenuStrip1_MouseClick_1);
+            // 
+            // deleteDisheToolStripMenuItem
+            // 
+            this.deleteDisheToolStripMenuItem.Name = "deleteDisheToolStripMenuItem";
+            this.deleteDisheToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteDisheToolStripMenuItem.Text = "Delete Dishe";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(39, 383);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(248, 18);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Tip: Right click on the dishe to delete";
+            // 
+            // MenuRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(751, 433);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPrice);
@@ -147,10 +178,11 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.dgMenu);
             this.Controls.Add(this.label1);
-            this.Name = "Food";
+            this.Name = "MenuRegisterForm";
             this.Text = "Food";
             this.Load += new System.EventHandler(this.Food_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgMenu)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,5 +200,8 @@
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox txtDesc;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteDisheToolStripMenuItem;
+        private System.Windows.Forms.Label label7;
     }
 }
