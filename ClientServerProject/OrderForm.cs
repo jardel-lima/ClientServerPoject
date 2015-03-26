@@ -38,7 +38,7 @@ namespace ClientServerProject
 
         private void loadMenu()
         {
-            string query = "SELECT menuId , dishes, description , price FROM Menu";
+            string query = "SELECT menuId , dishes, description , price FROM Menu where available ='y'";
             dataGVMenu.ColumnCount = 4;
             dataGVMenu.Columns[0].Name = "ID";
             dataGVMenu.Columns[1].Name = "Dish";
