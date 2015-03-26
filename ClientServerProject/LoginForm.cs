@@ -74,10 +74,13 @@ namespace ClientServerProject
             int count = 0;
             userId = int.Parse(txtUser.Text.ToString());
             string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"'";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            MySqlDataReader dataReader = cmd.ExecuteReader();
 
-                
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
                 while (dataReader.Read())
                 {
                     Value = dataReader["position"].ToString();
@@ -90,7 +93,7 @@ namespace ClientServerProject
                 {
                     if (Value.Equals("0", StringComparison.Ordinal))
                     {
-                        EmpOrders = new EmployeeForm(connection, this,userId, userLname);
+                        EmpOrders = new EmployeeForm(connection, this, userId, userLname);
                         EmpOrders.Show();
                         this.Hide();
 
@@ -100,7 +103,7 @@ namespace ClientServerProject
                     {
                         if (Value.Equals("1", StringComparison.Ordinal))
                         {
-                            managerView = new ManagerForm(connection, this ,userId, userLname);
+                            managerView = new ManagerForm(connection, this, userId, userLname);
                             managerView.Show();
                             this.Hide();
                         }
@@ -108,12 +111,16 @@ namespace ClientServerProject
                     }
 
 
+                }
+                else
+                {
+                    MessageBox.Show("User or Password is not correct");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("User or Password is not correct");
+                MessageBox.Show("Error: " + ex.Message);
             }
-                
         }
     }
 }

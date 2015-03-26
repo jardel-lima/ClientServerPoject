@@ -34,6 +34,7 @@
             this.userLastName = new System.Windows.Forms.Label();
             this.IdUser = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.Label();
+            this.btnBill = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             this.dataGVOrders.Location = new System.Drawing.Point(38, 116);
             this.dataGVOrders.Name = "dataGVOrders";
             this.dataGVOrders.ReadOnly = true;
-            this.dataGVOrders.Size = new System.Drawing.Size(212, 241);
+            this.dataGVOrders.Size = new System.Drawing.Size(223, 241);
             this.dataGVOrders.TabIndex = 1;
             // 
             // btnNewOrder
@@ -97,11 +98,22 @@
             this.txtTotal.TabIndex = 8;
             this.txtTotal.Text = "txtTotal";
             // 
+            // btnBill
+            // 
+            this.btnBill.Location = new System.Drawing.Point(175, 405);
+            this.btnBill.Name = "btnBill";
+            this.btnBill.Size = new System.Drawing.Size(75, 23);
+            this.btnBill.TabIndex = 9;
+            this.btnBill.Text = "Generate Bill";
+            this.btnBill.UseVisualStyleBackColor = true;
+            this.btnBill.Click += new System.EventHandler(this.btnBill_Click);
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 398);
+            this.ClientSize = new System.Drawing.Size(314, 440);
+            this.Controls.Add(this.btnBill);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.IdUser);
             this.Controls.Add(this.userLastName);
@@ -126,5 +138,6 @@
         private System.Windows.Forms.Label userLastName;
         private System.Windows.Forms.Label IdUser;
         private System.Windows.Forms.Label txtTotal;
+        private System.Windows.Forms.Button btnBill;
     }
 }
