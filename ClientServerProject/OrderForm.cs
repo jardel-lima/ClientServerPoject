@@ -214,7 +214,7 @@ namespace ClientServerProject
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Comfirm payment of "+string.Format("{0:c}",total), "Confirm", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Comfirm order? "+string.Format("{0:c}",total), "Confirm", MessageBoxButtons.YesNo);
 
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
@@ -243,8 +243,9 @@ namespace ClientServerProject
                     cmd.ExecuteNonQuery();
                     orderId = cmd.LastInsertedId;
                     inserteOrderDetails(orderId);
+                    insertOrderTable(orderId);
 
-                    MessageBox.Show("Thank you for your purchase", "Thank you", MessageBoxButtons.OK);
+                    MessageBox.Show("Order registered","Message" , MessageBoxButtons.OK);
                     parentForm.LoadData();
                     this.Close();
                     
@@ -257,6 +258,32 @@ namespace ClientServerProject
             else
             {
                 MessageBox.Show("You are not connected!!!", "Message");
+            }
+        }
+
+        private void insertOrderTable(long orderId)
+        {
+            int table;
+            try
+            {
+                table = int.Parse(txtTable.Text.ToString().Trim());
+                string instruction = " INSERT INTO `OrderTable`(`orderId`, `tableNumber`) VALUES( " + orderId + ", " + table + ")";
+                if (connection != null)
+                {
+                    MySqlCommand cmd = connection.CreateCommand();
+                    cmd.CommandText = instruction;
+                    cmd.ExecuteNonQuery();           
+                                   
+                }
+                else
+                {
+                    MessageBox.Show("You are not connected!!!", "Message");
+                }
+            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message, "Message");
             }
         }
 

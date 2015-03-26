@@ -41,6 +41,8 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.Label();
+            this.txtTable = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrder)).BeginInit();
             this.SuspendLayout();
@@ -91,7 +93,7 @@
             // txtSubTotal
             // 
             this.txtSubTotal.AutoSize = true;
-            this.txtSubTotal.Location = new System.Drawing.Point(719, 351);
+            this.txtSubTotal.Location = new System.Drawing.Point(720, 413);
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.Size = new System.Drawing.Size(53, 13);
             this.txtSubTotal.TabIndex = 4;
@@ -100,7 +102,7 @@
             // txtTaxes
             // 
             this.txtTaxes.AutoSize = true;
-            this.txtTaxes.Location = new System.Drawing.Point(719, 373);
+            this.txtTaxes.Location = new System.Drawing.Point(720, 435);
             this.txtTaxes.Name = "txtTaxes";
             this.txtTaxes.Size = new System.Drawing.Size(87, 13);
             this.txtTaxes.TabIndex = 5;
@@ -109,7 +111,7 @@
             // txtTotal
             // 
             this.txtTotal.AutoSize = true;
-            this.txtTotal.Location = new System.Drawing.Point(719, 403);
+            this.txtTotal.Location = new System.Drawing.Point(720, 465);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(45, 13);
             this.txtTotal.TabIndex = 6;
@@ -136,7 +138,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(558, 351);
+            this.btnDelete.Location = new System.Drawing.Point(567, 359);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 9;
@@ -147,7 +149,7 @@
             // btnConfirm
             // 
             this.btnConfirm.Enabled = false;
-            this.btnConfirm.Location = new System.Drawing.Point(789, 437);
+            this.btnConfirm.Location = new System.Drawing.Point(790, 499);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
             this.btnConfirm.TabIndex = 10;
@@ -157,7 +159,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(708, 437);
+            this.btnCancel.Location = new System.Drawing.Point(709, 499);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 11;
@@ -174,11 +176,29 @@
             this.txtId.TabIndex = 12;
             this.txtId.Text = "Id:";
             // 
+            // txtTable
+            // 
+            this.txtTable.Location = new System.Drawing.Point(751, 362);
+            this.txtTable.Name = "txtTable";
+            this.txtTable.Size = new System.Drawing.Size(100, 20);
+            this.txtTable.TabIndex = 13;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(706, 365);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Table: ";
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(876, 463);
+            this.ClientSize = new System.Drawing.Size(887, 534);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtTable);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
@@ -217,5 +237,7 @@
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label txtId;
+        private System.Windows.Forms.TextBox txtTable;
+        private System.Windows.Forms.Label label3;
     }
 }
