@@ -46,7 +46,7 @@ namespace ClientServerProject
 
         private void LoadData()
         {
-            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name' FROM Employees";
+            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name', active as 'Active' FROM Employees";
 
             if (connection != null)
             {
@@ -77,7 +77,7 @@ namespace ClientServerProject
 
         private void Search(int id)
         {
-            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name' FROM Employees WHERE EmployeeID=" + id;
+            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name', active as 'Active' FROM Employees WHERE EmployeeID=" + id;
 
             if (connection != null)
             {

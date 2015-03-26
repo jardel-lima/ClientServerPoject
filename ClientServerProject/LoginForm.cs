@@ -72,8 +72,9 @@ namespace ClientServerProject
             connect();
             string Value="";
             int count = 0;
+            string active = "";
             userId = int.Parse(txtUser.Text.ToString());
-            string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"'";
+            string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"' and active='y'";
 
             try
             {
@@ -85,6 +86,7 @@ namespace ClientServerProject
                 {
                     Value = dataReader["position"].ToString();
                     userLname = dataReader["lastName"].ToString();
+                    active = dataReader["active"].ToString();
                     count++;
                 }
                 dataReader.Close();
@@ -93,10 +95,9 @@ namespace ClientServerProject
                 {
                     if (Value.Equals("0", StringComparison.Ordinal))
                     {
-                        EmpOrders = new EmployeeForm(connection, this, userId, userLname);
-                        EmpOrders.Show();
-                        this.Hide();
-
+                         EmpOrders = new EmployeeForm(connection, this, userId, userLname);
+                         EmpOrders.Show();
+                         this.Hide();
 
                     }
                     else
