@@ -46,7 +46,7 @@ namespace ClientServerProject
 
         private void LoadData()
         {
-            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name', active as 'Active' FROM Employees";
+            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name', active as 'Active' FROM Employees order by active asc";
 
             if (connection != null)
             {
