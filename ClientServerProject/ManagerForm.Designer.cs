@@ -41,7 +41,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnSearchByDate = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.Label();
             this.btnEmployees = new System.Windows.Forms.Button();
             this.btnMenu = new System.Windows.Forms.Button();
             this.btnShowAll = new System.Windows.Forms.Button();
@@ -167,14 +167,14 @@
             this.btnSearchByDate.UseVisualStyleBackColor = true;
             this.btnSearchByDate.Click += new System.EventHandler(this.btnSearchByDate_Click);
             // 
-            // label6
+            // txtTotal
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(407, 476);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "TOTAL:";
+            this.txtTotal.AutoSize = true;
+            this.txtTotal.Location = new System.Drawing.Point(407, 476);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(45, 13);
+            this.txtTotal.TabIndex = 14;
+            this.txtTotal.Text = "TOTAL:";
             // 
             // btnEmployees
             // 
@@ -214,7 +214,7 @@
             this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnEmployees);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.btnSearchByDate);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label5);
@@ -255,7 +255,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnSearchByDate;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label txtTotal;
         private System.Windows.Forms.Button btnEmployees;
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Button btnShowAll;
