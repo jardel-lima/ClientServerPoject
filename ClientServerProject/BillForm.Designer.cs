@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtTable = new System.Windows.Forms.TextBox();
+            this.dgOrderTable = new System.Windows.Forms.DataGridView();
             this.txtTotal = new System.Windows.Forms.Label();
             this.txtTaxes = new System.Windows.Forms.Label();
             this.txtSubTotal = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.txtPay = new System.Windows.Forms.TextBox();
             this.userLabel = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
             this.btnPay = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnSearch = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrderTable)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -52,20 +52,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Table: ";
             // 
-            // textBox1
+            // txtTable
             // 
-            this.textBox1.Location = new System.Drawing.Point(63, 83);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtTable.Location = new System.Drawing.Point(63, 83);
+            this.txtTable.Name = "txtTable";
+            this.txtTable.Size = new System.Drawing.Size(100, 20);
+            this.txtTable.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgOrderTable
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 112);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(311, 138);
-            this.dataGridView1.TabIndex = 2;
+            this.dgOrderTable.AllowUserToAddRows = false;
+            this.dgOrderTable.AllowUserToDeleteRows = false;
+            this.dgOrderTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOrderTable.Location = new System.Drawing.Point(12, 112);
+            this.dgOrderTable.Name = "dgOrderTable";
+            this.dgOrderTable.ReadOnly = true;
+            this.dgOrderTable.Size = new System.Drawing.Size(311, 138);
+            this.dgOrderTable.TabIndex = 2;
             // 
             // txtTotal
             // 
@@ -103,21 +106,12 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Payment: ";
             // 
-            // textBox2
+            // txtPay
             // 
-            this.textBox2.Location = new System.Drawing.Point(426, 164);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 11;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(366, 192);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Charge: ";
+            this.txtPay.Location = new System.Drawing.Point(426, 164);
+            this.txtPay.Name = "txtPay";
+            this.txtPay.Size = new System.Drawing.Size(100, 20);
+            this.txtPay.TabIndex = 11;
             // 
             // userLabel
             // 
@@ -145,28 +139,38 @@
             this.btnPay.TabIndex = 15;
             this.btnPay.Text = "Pay";
             this.btnPay.UseVisualStyleBackColor = true;
+            this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(178, 80);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 16;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // BillForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 268);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnPay);
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.userLabel);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtPay);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.txtTaxes);
             this.Controls.Add(this.txtSubTotal);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dgOrderTable);
+            this.Controls.Add(this.txtTable);
             this.Controls.Add(this.label1);
             this.Name = "BillForm";
             this.Text = "BillForm";
-            this.Load += new System.EventHandler(this.BillForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrderTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,16 +179,16 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtTable;
+        private System.Windows.Forms.DataGridView dgOrderTable;
         private System.Windows.Forms.Label txtTotal;
         private System.Windows.Forms.Label txtTaxes;
         private System.Windows.Forms.Label txtSubTotal;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtPay;
         private System.Windows.Forms.Label userLabel;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Button btnPay;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

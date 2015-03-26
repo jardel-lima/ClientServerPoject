@@ -214,7 +214,7 @@ namespace ClientServerProject
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Comfirm order? "+string.Format("{0:c}",total), "Confirm", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Comfirm payment of "+string.Format("{0:c}",total), "Confirm", MessageBoxButtons.YesNo);
 
             if (result == System.Windows.Forms.DialogResult.Yes)
             {

@@ -202,7 +202,7 @@ namespace ClientServerProject
 
         private void delete()
         {
-            string query = "DELETE FROM Employees WHERE EmployeeID=" + empIdDelete;
+            string query = "UPDATE Employees SET active = 'n' WHERE EmployeeID=" + empIdDelete;
 
             if (connection != null)
             {
