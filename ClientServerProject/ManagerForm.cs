@@ -118,6 +118,10 @@ namespace ClientServerProject
 
         private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+        if (connection != null)
+            {
+                connection.Close();
+            }
             mainForm.Show();
         }
 

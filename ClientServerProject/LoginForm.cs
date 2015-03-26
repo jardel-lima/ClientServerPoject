@@ -42,7 +42,7 @@ namespace ClientServerProject
             try
             {
                 connection.Open();
-                Text = "Connected";
+                
             }
             catch (MySqlException ex)
             {
