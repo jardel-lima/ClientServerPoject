@@ -213,6 +213,7 @@
             this.Controls.Add(this.dataGVMenu);
             this.Controls.Add(this.label1);
             this.Name = "OrderForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Order";
             this.Load += new System.EventHandler(this.Order_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGVMenu)).EndInit();

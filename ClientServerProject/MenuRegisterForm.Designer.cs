@@ -149,7 +149,7 @@
             // deleteDisheToolStripMenuItem
             // 
             this.deleteDisheToolStripMenuItem.Name = "deleteDisheToolStripMenuItem";
-            this.deleteDisheToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteDisheToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.deleteDisheToolStripMenuItem.Text = "Delete Dishe";
             // 
             // label7
@@ -179,6 +179,7 @@
             this.Controls.Add(this.dgMenu);
             this.Controls.Add(this.label1);
             this.Name = "MenuRegisterForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Food";
             this.Load += new System.EventHandler(this.Food_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgMenu)).EndInit();

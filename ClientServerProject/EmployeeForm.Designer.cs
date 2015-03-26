@@ -121,6 +121,7 @@
             this.Controls.Add(this.dataGVOrders);
             this.Controls.Add(this.label1);
             this.Name = "EmployeeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeOrders";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeOrders_FormClosing);
             this.Load += new System.EventHandler(this.EmployeeOrders_Load);

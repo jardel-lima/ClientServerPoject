@@ -169,6 +169,7 @@
             this.Controls.Add(this.txtTable);
             this.Controls.Add(this.label1);
             this.Name = "BillForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BillForm";
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderTable)).EndInit();
             this.ResumeLayout(false);
