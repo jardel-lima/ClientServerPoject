@@ -47,7 +47,7 @@ namespace ClientServerProject
 
         private void LoadData()
         {
-            string query = "SELECT menuId AS 'ID', dishes AS 'Dishes', price AS 'Price' , description FROM Menu";
+            string query = "SELECT menuId AS 'ID', dishes AS 'Dishes', price AS 'Price' , description, available  FROM Menu";
 
             if (connection != null)
             {
@@ -167,7 +167,7 @@ namespace ClientServerProject
 
         private void delete()
         {
-            string query = "DELETE FROM Menu WHERE menuId=" + IdDelete;
+            string query = "UPDATE Menu SET available = 'n' WHERE menuId=" + IdDelete;
 
             if (connection != null)
             {

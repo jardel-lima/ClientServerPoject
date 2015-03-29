@@ -42,7 +42,7 @@ namespace ClientServerProject
             try
             {
                 connection.Open();
-                Text = "Connected";
+                
             }
             catch (MySqlException ex)
             {
@@ -72,16 +72,21 @@ namespace ClientServerProject
             connect();
             string Value="";
             int count = 0;
+            string active = "";
             userId = int.Parse(txtUser.Text.ToString());
-            string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"'";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            MySqlDataReader dataReader = cmd.ExecuteReader();
+            string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"' and active='y'";
 
-                
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+
                 while (dataReader.Read())
                 {
                     Value = dataReader["position"].ToString();
                     userLname = dataReader["lastName"].ToString();
+                    active = dataReader["active"].ToString();
                     count++;
                 }
                 dataReader.Close();
@@ -90,17 +95,16 @@ namespace ClientServerProject
                 {
                     if (Value.Equals("0", StringComparison.Ordinal))
                     {
-                        EmpOrders = new EmployeeForm(connection, this,userId, userLname);
-                        EmpOrders.Show();
-                        this.Hide();
-
+                         EmpOrders = new EmployeeForm(connection, this, userId, userLname);
+                         EmpOrders.Show();
+                         this.Hide();
 
                     }
                     else
                     {
                         if (Value.Equals("1", StringComparison.Ordinal))
                         {
-                            managerView = new ManagerForm(connection, this ,userId, userLname);
+                            managerView = new ManagerForm(connection, this, userId, userLname);
                             managerView.Show();
                             this.Hide();
                         }
@@ -108,12 +112,16 @@ namespace ClientServerProject
                     }
 
 
+                }
+                else
+                {
+                    MessageBox.Show("User or Password is not correct");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("User or Password is not correct");
+                MessageBox.Show("Error: " + ex.Message);
             }
-                
         }
     }
 }

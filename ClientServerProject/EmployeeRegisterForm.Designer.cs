@@ -193,7 +193,7 @@
             this.label7.TabIndex = 13;
             this.label7.Text = "Tip: Right click on the employee to delete";
             // 
-            // FormEmployee
+            // EmployeeRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -212,7 +212,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "FormEmployee";
+            this.Name = "EmployeeRegisterForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormEmployee";
             this.Load += new System.EventHandler(this.FormEmployee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).EndInit();

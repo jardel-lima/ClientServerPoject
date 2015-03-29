@@ -46,7 +46,7 @@ namespace ClientServerProject
 
         private void LoadData()
         {
-            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name' FROM Employees";
+            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name', active as 'Active' FROM Employees order by active asc";
 
             if (connection != null)
             {
@@ -61,6 +61,7 @@ namespace ClientServerProject
                     
 
                     dgEmployees.DataSource = ds.Tables[0];
+                    getTotal();
                 }
                 catch (Exception ex){
                     MessageBox.Show(ex.Message);
@@ -76,7 +77,7 @@ namespace ClientServerProject
 
         private void Search(int id)
         {
-            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name' FROM Employees WHERE EmployeeID=" + id;
+            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name', active as 'Active' FROM Employees WHERE EmployeeID=" + id;
 
             if (connection != null)
             {
@@ -88,6 +89,7 @@ namespace ClientServerProject
                 mcmd.Fill(ds, "Person details");
 
                 dgEmployees.DataSource = ds.Tables[0];
+                
 
             }
             else
@@ -116,6 +118,10 @@ namespace ClientServerProject
 
         private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+        if (connection != null)
+            {
+                connection.Close();
+            }
             mainForm.Show();
         }
 
@@ -124,7 +130,10 @@ namespace ClientServerProject
             string date1, date2;
             date1 = dateFrom.Value.ToString("yyyy-MM-dd");
             date2 = dateTo.Value.ToString("yyyy-MM-dd");
-            SearchByDate(date1,date2);
+            if (dateFrom.Value > dateTo.Value)
+                MessageBox.Show("The initial date is greater than the final");
+            else
+                SearchByDate(date1,date2);
         }
 
         private void SearchByDate( string date1, string date2)
@@ -145,6 +154,7 @@ namespace ClientServerProject
 
 
                     dgOrders.DataSource = ds.Tables[0];
+                    getTotal();
                 }
                 catch (Exception ex)
                 {
@@ -177,6 +187,7 @@ namespace ClientServerProject
 
 
                     dgOrders.DataSource = ds.Tables[0];
+                    getTotal();
                 }
                 catch (Exception ex)
                 {
@@ -225,14 +236,25 @@ namespace ClientServerProject
 
         private void dgEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow row = this.dgEmployees.Rows[e.RowIndex];
+                    SearchOrderByEmp(int.Parse(row.Cells["ID"].Value.ToString()));
+                }
+           
         }
 
-        
-
-       
-
-
+        private void getTotal()
+        {
+            int rowCount;
+            double total = 0.0;
+            rowCount = dgOrders.RowCount;
+            for (int i = 0; i < rowCount; i++)
+            {
+                total += double.Parse(dgOrders.Rows[i].Cells[2].Value.ToString());
+            }
+            txtTotal.Text = string.Format("TOTAL: {0:c}",total);
+        }
 
 
     }

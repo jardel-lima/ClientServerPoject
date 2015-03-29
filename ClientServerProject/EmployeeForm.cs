@@ -21,6 +21,7 @@ namespace ClientServerProject
         private int userId;
         private string userLname;
         private LoginForm mainForm;
+        private BillForm billform;
         public EmployeeForm(MySqlConnection con, LoginForm form, int id, string lname)
         {
             connection = con;
@@ -50,6 +51,10 @@ namespace ClientServerProject
 
         private void EmployeeOrders_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (connection != null)
+            {
+                connection.Close();
+            }
             mainForm.Show();
         }
 
@@ -101,6 +106,12 @@ namespace ClientServerProject
                 total += double.Parse(dataGVOrders.Rows[i].Cells[2].Value.ToString());
             }
             txtTotal.Text = string.Format("TOTAL: {0:c}",total);
+        }
+
+        private void btnBill_Click(object sender, EventArgs e)
+        {
+            billform = new BillForm(connection, userId, userLname);
+            billform.ShowDialog();
         }
     }
 }
