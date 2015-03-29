@@ -71,6 +71,7 @@ namespace ClientServerProject
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     //Create Command
                     mcmd = new MySqlDataAdapter(query, connection);
                     ds = new DataSet();
@@ -85,6 +86,10 @@ namespace ClientServerProject
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
 
 

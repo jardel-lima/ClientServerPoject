@@ -69,6 +69,7 @@ namespace ClientServerProject
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             connect();
             string Value="";
             int count = 0;
@@ -91,6 +92,7 @@ namespace ClientServerProject
                 }
                 dataReader.Close();
                 cleanFields();
+                Cursor.Current = Cursors.Default;
                 if (count > 0)
                 {
                     if (Value.Equals("0", StringComparison.Ordinal))
@@ -121,6 +123,8 @@ namespace ClientServerProject
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
+            }finally{
+                Cursor.Current = Cursors.Default;
             }
         }
     }
