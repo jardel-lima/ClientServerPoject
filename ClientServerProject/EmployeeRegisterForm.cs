@@ -45,13 +45,23 @@ namespace ClientServerProject
             if (connection != null)
             {
                 //Create Command
-                mcmd = new MySqlDataAdapter(query, connection);
-                ds = new DataSet();
-                new MySqlCommandBuilder(mcmd);
+                try {
+                    Cursor.Current = Cursors.WaitCursor;
+                    mcmd = new MySqlDataAdapter(query, connection);
+                    ds = new DataSet();
+                    new MySqlCommandBuilder(mcmd);
 
-                mcmd.Fill(ds, "Person details");
+                    mcmd.Fill(ds, "Person details");
 
-                dgEmployees.DataSource = ds.Tables[0];
+                    dgEmployees.DataSource = ds.Tables[0];
+                }
+                catch (MySqlException ex) {
+                    MessageBox.Show("Erro: " + ex.Message, "Message");
+                }
+                finally {
+                    Cursor.Current = Cursors.Default;
+                }
+                
                
             }
             else
@@ -99,6 +109,7 @@ namespace ClientServerProject
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandText = instruction;
                     cmd.ExecuteNonQuery();
@@ -110,6 +121,10 @@ namespace ClientServerProject
                 catch (MySqlException ex)
                 {
                     MessageBox.Show("Erro: " + ex.Message, "Message");
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
             }
             else
@@ -126,6 +141,7 @@ namespace ClientServerProject
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandText = instruction;
                     cmd.ExecuteNonQuery();
@@ -137,6 +153,10 @@ namespace ClientServerProject
                 catch (MySqlException ex)
                 {
                     MessageBox.Show("Erro: " + ex.Message, "Message");
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
             }
             else
@@ -208,6 +228,7 @@ namespace ClientServerProject
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
@@ -219,6 +240,10 @@ namespace ClientServerProject
                 catch (MySqlException ex)
                 {
                     MessageBox.Show("Erro: " + ex.Message, "Message");
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
             }
             else

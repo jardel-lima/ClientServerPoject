@@ -23,6 +23,7 @@ namespace ClientServerProject
         private double subTotal = 0.0;
         private double taxes = 0.0;
         private double total = 0.0;
+        private int table;
         private EmployeeForm parentForm;
 
         public OrderForm(MySqlConnection conn, EmployeeForm empForm, int id, string lname)
@@ -73,6 +74,7 @@ namespace ClientServerProject
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
@@ -86,6 +88,10 @@ namespace ClientServerProject
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
                 
 
@@ -144,8 +150,10 @@ namespace ClientServerProject
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             addItems();
             calculateTotal();
+            Cursor.Current = Cursors.Default;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -214,12 +222,20 @@ namespace ClientServerProject
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Comfirm payment of "+string.Format("{0:c}",total), "Confirm", MessageBoxButtons.YesNo);
-
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            try
             {
-                confirmPurchase();
+                table = int.Parse(txtTable.Text.ToString().Trim());
+                DialogResult result = MessageBox.Show("Comfirm order of " + string.Format("{0:c}", total), "Confirm", MessageBoxButtons.YesNo);
+
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    confirmPurchase();
+                }
             }
+            catch(Exception ex) {
+                MessageBox.Show("Erro: " + ex.Message, "Message");
+            }
+           
         }
 
         private void confirmPurchase()
@@ -238,6 +254,7 @@ namespace ClientServerProject
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandText = instruction;
                     cmd.ExecuteNonQuery();
@@ -247,12 +264,17 @@ namespace ClientServerProject
 
                     MessageBox.Show("Order registered","Message" , MessageBoxButtons.OK);
                     parentForm.LoadData();
+                    Cursor.Current = Cursors.Default;
                     this.Close();
                     
                 }
                 catch (MySqlException ex)
                 {
                     MessageBox.Show("Erro: " + ex.Message, "Message");
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
             }
             else
@@ -263,10 +285,9 @@ namespace ClientServerProject
 
         private void insertOrderTable(long orderId)
         {
-            int table;
-            try
-            {
-                table = int.Parse(txtTable.Text.ToString().Trim());
+           
+           
+                
                 string instruction = " INSERT INTO `OrderTable`(`orderId`, `tableNumber`) VALUES( " + orderId + ", " + table + ")";
                 if (connection != null)
                 {
@@ -280,11 +301,7 @@ namespace ClientServerProject
                     MessageBox.Show("You are not connected!!!", "Message");
                 }
             
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro: " + ex.Message, "Message");
-            }
+           
         }
 
         private void inserteOrderDetails(long orderId){
@@ -299,17 +316,13 @@ namespace ClientServerProject
 
                 if (connection != null)
                 {
-                    try
-                    {
+                    
+                        
                         MySqlCommand cmd = connection.CreateCommand();
                         cmd.CommandText = instruction;
                         cmd.ExecuteNonQuery();
                        
-                    }
-                    catch (MySqlException ex)
-                    {
-                        MessageBox.Show("Erro: " + ex.Message, "Message");
-                    }
+                   
                 }
                 else
                 {

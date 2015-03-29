@@ -39,6 +39,7 @@ namespace ClientServerProject
 
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
                 tableNumber = int.Parse(txtTable.Text.ToString().Trim());
 
                 if (connection != null)
@@ -51,6 +52,7 @@ namespace ClientServerProject
                                     "WHERE ot.tableNumber=" + tableNumber;
                     
                         //Create Command
+
                         mcmd = new MySqlDataAdapter(query, connection);
                         
                         ds = new DataSet();
@@ -73,6 +75,10 @@ namespace ClientServerProject
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
         }
 
         private void getTotal()
@@ -83,7 +89,7 @@ namespace ClientServerProject
             int quantity = 0;
            
             rowCount = dgOrderTable.RowCount;
-            
+            Cursor.Current = Cursors.WaitCursor;
             for (int i = 0; i < rowCount; i++)
             {
                 price = double.Parse(dgOrderTable.Rows[i].Cells[3].Value.ToString());
@@ -91,7 +97,7 @@ namespace ClientServerProject
                quantity = int.Parse(dgOrderTable.Rows[i].Cells[4].Value.ToString());
                 subTotal += price * quantity;
             }
-
+            Cursor.Current = Cursors.Default;
             taxes = subTotal * GST;
             total = subTotal + taxes;
 
@@ -114,6 +120,7 @@ namespace ClientServerProject
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     MySqlCommand cmd = connection.CreateCommand();
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
@@ -125,6 +132,10 @@ namespace ClientServerProject
                 catch (MySqlException ex)
                 {
                     MessageBox.Show("Erro: " + ex.Message, "Message");
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
             }
             else
@@ -141,7 +152,7 @@ namespace ClientServerProject
                 if (payment > total)
                 {
                     double charge = payment - total;
-                    MessageBox.Show("Charge :" + charge);
+                    MessageBox.Show(string.Format("Charge : {0:c}" , charge));
                     delete();
                     this.Close();
                 }
