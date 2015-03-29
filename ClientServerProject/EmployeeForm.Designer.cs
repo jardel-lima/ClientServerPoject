@@ -33,6 +33,7 @@
             this.btnNewOrder = new System.Windows.Forms.Button();
             this.userLastName = new System.Windows.Forms.Label();
             this.IdUser = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,11 +88,21 @@
             this.IdUser.TabIndex = 7;
             this.IdUser.Text = "userID";
             // 
+            // txtTotal
+            // 
+            this.txtTotal.AutoSize = true;
+            this.txtTotal.Location = new System.Drawing.Point(35, 368);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(42, 13);
+            this.txtTotal.TabIndex = 8;
+            this.txtTotal.Text = "txtTotal";
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 398);
+            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.IdUser);
             this.Controls.Add(this.userLastName);
             this.Controls.Add(this.btnNewOrder);
@@ -114,5 +125,6 @@
         private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.Label userLastName;
         private System.Windows.Forms.Label IdUser;
+        private System.Windows.Forms.Label txtTotal;
     }
 }
