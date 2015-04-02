@@ -43,6 +43,7 @@ namespace ClientServerProject
             }
         }
 
+        //New Order 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
             orderForm = new OrderForm(connection, this, userId, userLname);
@@ -63,6 +64,7 @@ namespace ClientServerProject
 
         }
 
+        //Load the employee's orders and the unpaid orders   
         public void LoadData()
         {
             string query = "SELECT orderId AS 'ID', `date` AS 'Date', price AS 'Price' FROM `Order` WHERE Employees_EmployeeID=" + userId;
@@ -110,11 +112,12 @@ namespace ClientServerProject
             }
             
         }
-
+        //show the total of orders
         private void getTotal()
         {
             int rowCount;
             double total = 0.0;
+            //get the values from the Datagirdview's cells
             rowCount = dataGVOrders.RowCount;
             for (int i = 0; i < rowCount; i++)
             {

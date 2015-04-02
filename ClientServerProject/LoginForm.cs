@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//To test the program: 
+//Manager: User:1, Password :12345
+//Employee:  User:2, Password:12201 
 namespace ClientServerProject
 {
     public partial class LoginForm : Form
@@ -24,6 +26,7 @@ namespace ClientServerProject
         {
             InitializeComponent();
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -66,7 +69,7 @@ namespace ClientServerProject
             txtUser.Text = "";
             txtPassword.Text = "";
         }
-
+        //Login
         private void btnLogin_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -77,7 +80,9 @@ namespace ClientServerProject
             
             try
             {
+                
                 userId = int.Parse(txtUser.Text.ToString());
+                //Search User(ID) and Password in the Database
                 string query = "select * from Employees where EmployeeID='" + txtUser.Text + "' and password='" + txtPassword.Text + "' and active='y'";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -86,16 +91,20 @@ namespace ClientServerProject
 
                 while (dataReader.Read())
                 {
+                    //get position. 1: Manager, 2: Employee
                     Value = dataReader["position"].ToString();
                     userLname = dataReader["lastName"].ToString();
+                    //active : y: employee is active, n : employee is not active; 
                     active = dataReader["active"].ToString();
                     count++;
                 }
                 dataReader.Close();
                 cleanFields();
                 Cursor.Current = Cursors.Default;
+                //if the query returns one or more rows
                 if (count > 0)
                 {
+                    //if position is equal to 0, the user is a employee and it shows the employee's screen 
                     if (Value.Equals("0", StringComparison.Ordinal))
                     {
                          EmpOrders = new EmployeeForm(connection, this, userId, userLname);
@@ -105,6 +114,7 @@ namespace ClientServerProject
                     }
                     else
                     {
+                        //if position is equal to 1, the user is the manager and it shows the manager's screen
                         if (Value.Equals("1", StringComparison.Ordinal))
                         {
                             managerView = new ManagerForm(connection, this, userId, userLname);
