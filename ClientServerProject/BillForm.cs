@@ -21,11 +21,12 @@ namespace ClientServerProject
         private double taxes = 0.0;//Saves table's taxes
         private double total = 0.0;//Saves table's total
         private int tableNumber;//Saves table's number
+        private EmployeeForm parentForm;
 
-        public BillForm(MySqlConnection con, int id, string lname)
+        public BillForm(MySqlConnection con, EmployeeForm empForm, int id, string lname)
         {
             connection = con;
-            
+            parentForm = empForm;
             InitializeComponent();
             userLabel.Text = "User: " + lname;
             idLabel.Text = "ID: " + id;
@@ -153,6 +154,7 @@ namespace ClientServerProject
                     double charge = payment - total;
                     MessageBox.Show(string.Format("Charge : {0:c}" , charge));
                     delete();
+                    parentForm.LoadData();
                     this.Close();
                 }
                 else
@@ -165,5 +167,6 @@ namespace ClientServerProject
                 MessageBox.Show("Erro: " + ex);
             }
         }
+
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dgMenu = new System.Windows.Forms.DataGridView();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -39,14 +38,10 @@
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDesc = new System.Windows.Forms.RichTextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteDisheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label7 = new System.Windows.Forms.Label();
             this.gbAva = new System.Windows.Forms.GroupBox();
-            this.rdAva = new System.Windows.Forms.RadioButton();
             this.rdUnava = new System.Windows.Forms.RadioButton();
+            this.rdAva = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgMenu)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.gbAva.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,19 +53,20 @@
             this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "MENU";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // dgMenu
             // 
+            this.dgMenu.AllowUserToAddRows = false;
+            this.dgMenu.AllowUserToDeleteRows = false;
             this.dgMenu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMenu.Location = new System.Drawing.Point(12, 81);
             this.dgMenu.MultiSelect = false;
             this.dgMenu.Name = "dgMenu";
+            this.dgMenu.ReadOnly = true;
             this.dgMenu.Size = new System.Drawing.Size(424, 281);
             this.dgMenu.TabIndex = 1;
             this.dgMenu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMenu_CellContentClick);
-            this.dgMenu.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMenus_CellMouseUp);
             // 
             // btnEdit
             // 
@@ -142,30 +138,6 @@
             this.txtDesc.TabIndex = 9;
             this.txtDesc.Text = "";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteDisheToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(140, 26);
-            this.contextMenuStrip1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.contextMenuStrip1_MouseClick_1);
-            // 
-            // deleteDisheToolStripMenuItem
-            // 
-            this.deleteDisheToolStripMenuItem.Name = "deleteDisheToolStripMenuItem";
-            this.deleteDisheToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.deleteDisheToolStripMenuItem.Text = "Delete Dishe";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(39, 383);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(248, 18);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Tip: Right click on the dishe to delete";
-            // 
             // gbAva
             // 
             this.gbAva.Controls.Add(this.rdUnava);
@@ -176,17 +148,6 @@
             this.gbAva.Size = new System.Drawing.Size(200, 65);
             this.gbAva.TabIndex = 15;
             this.gbAva.TabStop = false;
-            // 
-            // rdAva
-            // 
-            this.rdAva.AutoSize = true;
-            this.rdAva.Location = new System.Drawing.Point(7, 20);
-            this.rdAva.Name = "rdAva";
-            this.rdAva.Size = new System.Drawing.Size(68, 17);
-            this.rdAva.TabIndex = 0;
-            this.rdAva.TabStop = true;
-            this.rdAva.Text = "Available";
-            this.rdAva.UseVisualStyleBackColor = true;
             // 
             // rdUnava
             // 
@@ -199,13 +160,23 @@
             this.rdUnava.Text = "Unavalable";
             this.rdUnava.UseVisualStyleBackColor = true;
             // 
+            // rdAva
+            // 
+            this.rdAva.AutoSize = true;
+            this.rdAva.Location = new System.Drawing.Point(7, 20);
+            this.rdAva.Name = "rdAva";
+            this.rdAva.Size = new System.Drawing.Size(68, 17);
+            this.rdAva.TabIndex = 0;
+            this.rdAva.TabStop = true;
+            this.rdAva.Text = "Available";
+            this.rdAva.UseVisualStyleBackColor = true;
+            // 
             // MenuRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(751, 433);
+            this.ClientSize = new System.Drawing.Size(751, 388);
             this.Controls.Add(this.gbAva);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPrice);
@@ -221,7 +192,6 @@
             this.Text = "Food";
             this.Load += new System.EventHandler(this.Food_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgMenu)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.gbAva.ResumeLayout(false);
             this.gbAva.PerformLayout();
             this.ResumeLayout(false);
@@ -241,9 +211,6 @@
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox txtDesc;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem deleteDisheToolStripMenuItem;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox gbAva;
         private System.Windows.Forms.RadioButton rdUnava;
         private System.Windows.Forms.RadioButton rdAva;

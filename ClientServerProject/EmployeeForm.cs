@@ -128,7 +128,7 @@ namespace ClientServerProject
 
         private void btnBill_Click(object sender, EventArgs e)
         {
-            billform = new BillForm(connection, userId, userLname);
+            billform = new BillForm(connection,this, userId, userLname);
             billform.ShowDialog();
         }
     }

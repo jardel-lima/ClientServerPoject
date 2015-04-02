@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,15 +40,10 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtConfPassword = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.gbActive = new System.Windows.Forms.GroupBox();
             this.rbInactive = new System.Windows.Forms.RadioButton();
             this.rbActive = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.gbActive.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +88,6 @@
             this.dgEmployees.Size = new System.Drawing.Size(318, 270);
             this.dgEmployees.TabIndex = 3;
             this.dgEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmployees_CellContentClick);
-            this.dgEmployees.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEmployees_CellMouseUp);
             // 
             // label4
             // 
@@ -164,39 +157,6 @@
             this.txtConfPassword.Size = new System.Drawing.Size(157, 20);
             this.txtConfPassword.TabIndex = 11;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteEmployeeToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
-            this.contextMenuStrip1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.contextMenuStrip1_MouseClick);
-            // 
-            // deleteEmployeeToolStripMenuItem
-            // 
-            this.deleteEmployeeToolStripMenuItem.Name = "deleteEmployeeToolStripMenuItem";
-            this.deleteEmployeeToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.deleteEmployeeToolStripMenuItem.Text = "Delete Employee";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(0, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "label6";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 390);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(277, 18);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Tip: Right click on the employee to delete";
-            // 
             // gbActive
             // 
             this.gbActive.Controls.Add(this.rbInactive);
@@ -236,8 +196,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 428);
             this.Controls.Add(this.gbActive);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtConfPassword);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnAdd);
@@ -255,7 +213,6 @@
             this.Text = "FormEmployee";
             this.Load += new System.EventHandler(this.FormEmployee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.gbActive.ResumeLayout(false);
             this.gbActive.PerformLayout();
             this.ResumeLayout(false);
@@ -277,10 +234,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtConfPassword;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem deleteEmployeeToolStripMenuItem;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox gbActive;
         private System.Windows.Forms.RadioButton rbInactive;
         private System.Windows.Forms.RadioButton rbActive;
