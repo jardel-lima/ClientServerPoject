@@ -63,16 +63,16 @@
             this.dgOrders.AllowUserToAddRows = false;
             this.dgOrders.AllowUserToDeleteRows = false;
             this.dgOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgOrders.Location = new System.Drawing.Point(394, 167);
+            this.dgOrders.Location = new System.Drawing.Point(473, 167);
             this.dgOrders.Name = "dgOrders";
             this.dgOrders.ReadOnly = true;
-            this.dgOrders.Size = new System.Drawing.Size(430, 270);
+            this.dgOrders.Size = new System.Drawing.Size(351, 270);
             this.dgOrders.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(566, 142);
+            this.label2.Location = new System.Drawing.Point(613, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 3;
@@ -125,7 +125,7 @@
             this.dgEmployees.MultiSelect = false;
             this.dgEmployees.Name = "dgEmployees";
             this.dgEmployees.ReadOnly = true;
-            this.dgEmployees.Size = new System.Drawing.Size(359, 270);
+            this.dgEmployees.Size = new System.Drawing.Size(440, 270);
             this.dgEmployees.TabIndex = 9;
             this.dgEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmployees_CellClick);
             // 

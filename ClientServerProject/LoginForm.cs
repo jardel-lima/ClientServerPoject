@@ -74,11 +74,12 @@ namespace ClientServerProject
             string Value="";
             int count = 0;
             string active = "";
-            userId = int.Parse(txtUser.Text.ToString());
-            string query = "select * from Employees where EmployeeID='"+txtUser.Text+"' and password='"+txtPassword.Text+"' and active='y'";
-
+            
             try
             {
+                userId = int.Parse(txtUser.Text.ToString());
+                string query = "select * from Employees where EmployeeID='" + txtUser.Text + "' and password='" + txtPassword.Text + "' and active='y'";
+
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 

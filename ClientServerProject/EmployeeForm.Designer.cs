@@ -35,7 +35,10 @@
             this.IdUser = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.Label();
             this.btnBill = new System.Windows.Forms.Button();
+            this.dgNotPaid = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgNotPaid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +54,7 @@
             // 
             this.dataGVOrders.AllowUserToAddRows = false;
             this.dataGVOrders.AllowUserToDeleteRows = false;
-            this.dataGVOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGVOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGVOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGVOrders.Location = new System.Drawing.Point(38, 116);
             this.dataGVOrders.Name = "dataGVOrders";
@@ -100,7 +103,7 @@
             // 
             // btnBill
             // 
-            this.btnBill.Location = new System.Drawing.Point(175, 405);
+            this.btnBill.Location = new System.Drawing.Point(620, 368);
             this.btnBill.Name = "btnBill";
             this.btnBill.Size = new System.Drawing.Size(75, 23);
             this.btnBill.TabIndex = 9;
@@ -108,11 +111,34 @@
             this.btnBill.UseVisualStyleBackColor = true;
             this.btnBill.Click += new System.EventHandler(this.btnBill_Click);
             // 
+            // dgNotPaid
+            // 
+            this.dgNotPaid.AllowUserToAddRows = false;
+            this.dgNotPaid.AllowUserToDeleteRows = false;
+            this.dgNotPaid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgNotPaid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgNotPaid.Location = new System.Drawing.Point(284, 116);
+            this.dgNotPaid.Name = "dgNotPaid";
+            this.dgNotPaid.ReadOnly = true;
+            this.dgNotPaid.Size = new System.Drawing.Size(397, 241);
+            this.dgNotPaid.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(422, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "NOT PAID ORDERS";
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 440);
+            this.ClientSize = new System.Drawing.Size(707, 440);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dgNotPaid);
             this.Controls.Add(this.btnBill);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.IdUser);
@@ -126,6 +152,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeOrders_FormClosing);
             this.Load += new System.EventHandler(this.EmployeeOrders_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGVOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgNotPaid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,5 +167,7 @@
         private System.Windows.Forms.Label IdUser;
         private System.Windows.Forms.Label txtTotal;
         private System.Windows.Forms.Button btnBill;
+        private System.Windows.Forms.DataGridView dgNotPaid;
+        private System.Windows.Forms.Label label2;
     }
 }

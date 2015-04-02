@@ -42,8 +42,12 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteDisheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label7 = new System.Windows.Forms.Label();
+            this.gbAva = new System.Windows.Forms.GroupBox();
+            this.rdAva = new System.Windows.Forms.RadioButton();
+            this.rdUnava = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgMenu)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.gbAva.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +74,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(524, 258);
+            this.btnEdit.Location = new System.Drawing.Point(517, 323);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 2;
@@ -80,7 +84,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(664, 258);
+            this.btnAdd.Location = new System.Drawing.Point(627, 323);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 3;
@@ -162,11 +166,45 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "Tip: Right click on the dishe to delete";
             // 
+            // gbAva
+            // 
+            this.gbAva.Controls.Add(this.rdUnava);
+            this.gbAva.Controls.Add(this.rdAva);
+            this.gbAva.Enabled = false;
+            this.gbAva.Location = new System.Drawing.Point(517, 231);
+            this.gbAva.Name = "gbAva";
+            this.gbAva.Size = new System.Drawing.Size(200, 65);
+            this.gbAva.TabIndex = 15;
+            this.gbAva.TabStop = false;
+            // 
+            // rdAva
+            // 
+            this.rdAva.AutoSize = true;
+            this.rdAva.Location = new System.Drawing.Point(7, 20);
+            this.rdAva.Name = "rdAva";
+            this.rdAva.Size = new System.Drawing.Size(68, 17);
+            this.rdAva.TabIndex = 0;
+            this.rdAva.TabStop = true;
+            this.rdAva.Text = "Available";
+            this.rdAva.UseVisualStyleBackColor = true;
+            // 
+            // rdUnava
+            // 
+            this.rdUnava.AutoSize = true;
+            this.rdUnava.Location = new System.Drawing.Point(7, 42);
+            this.rdUnava.Name = "rdUnava";
+            this.rdUnava.Size = new System.Drawing.Size(79, 17);
+            this.rdUnava.TabIndex = 1;
+            this.rdUnava.TabStop = true;
+            this.rdUnava.Text = "Unavalable";
+            this.rdUnava.UseVisualStyleBackColor = true;
+            // 
             // MenuRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(751, 433);
+            this.Controls.Add(this.gbAva);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.label4);
@@ -184,6 +222,8 @@
             this.Load += new System.EventHandler(this.Food_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgMenu)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.gbAva.ResumeLayout(false);
+            this.gbAva.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +244,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteDisheToolStripMenuItem;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox gbAva;
+        private System.Windows.Forms.RadioButton rdUnava;
+        private System.Windows.Forms.RadioButton rdAva;
     }
 }

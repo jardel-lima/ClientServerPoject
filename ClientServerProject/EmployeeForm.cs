@@ -66,22 +66,32 @@ namespace ClientServerProject
         public void LoadData()
         {
             string query = "SELECT orderId AS 'ID', `date` AS 'Date', price AS 'Price' FROM `Order` WHERE Employees_EmployeeID=" + userId;
+            string query2 = "SELECT ot.tableNumber AS 'Table Number',ot.orderId AS 'Order Number',o.price AS 'Price',o.Employees_EmployeeID AS 'Employee ID' FROM `OrderTable` as ot inner join `Order` as o on o.orderId=ot.orderId";
 
             if (connection != null)
             {
                 try
                 {
                     Cursor.Current = Cursors.WaitCursor;
+
                     //Create Command
                     mcmd = new MySqlDataAdapter(query, connection);
                     ds = new DataSet();
                     new MySqlCommandBuilder(mcmd);
 
                     mcmd.Fill(ds, "Person details");
-
-
                     dataGVOrders.DataSource = ds.Tables[0];
                     getTotal();
+
+                    
+                    //Create Command
+                    mcmd = new MySqlDataAdapter(query2, connection);
+                    ds = new DataSet();
+                    new MySqlCommandBuilder(mcmd);
+
+                    mcmd.Fill(ds, "Person details");
+                    dgNotPaid.DataSource = ds.Tables[0];
+                    
                 }
                 catch (Exception ex)
                 {

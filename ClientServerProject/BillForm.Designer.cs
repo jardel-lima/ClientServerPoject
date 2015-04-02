@@ -63,17 +63,18 @@
             // 
             this.dgOrderTable.AllowUserToAddRows = false;
             this.dgOrderTable.AllowUserToDeleteRows = false;
+            this.dgOrderTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgOrderTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgOrderTable.Location = new System.Drawing.Point(12, 112);
             this.dgOrderTable.Name = "dgOrderTable";
             this.dgOrderTable.ReadOnly = true;
-            this.dgOrderTable.Size = new System.Drawing.Size(311, 138);
+            this.dgOrderTable.Size = new System.Drawing.Size(635, 138);
             this.dgOrderTable.TabIndex = 2;
             // 
             // txtTotal
             // 
             this.txtTotal.AutoSize = true;
-            this.txtTotal.Location = new System.Drawing.Point(366, 142);
+            this.txtTotal.Location = new System.Drawing.Point(17, 312);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(45, 13);
             this.txtTotal.TabIndex = 9;
@@ -82,7 +83,7 @@
             // txtTaxes
             // 
             this.txtTaxes.AutoSize = true;
-            this.txtTaxes.Location = new System.Drawing.Point(366, 112);
+            this.txtTaxes.Location = new System.Drawing.Point(17, 282);
             this.txtTaxes.Name = "txtTaxes";
             this.txtTaxes.Size = new System.Drawing.Size(87, 13);
             this.txtTaxes.TabIndex = 8;
@@ -91,7 +92,7 @@
             // txtSubTotal
             // 
             this.txtSubTotal.AutoSize = true;
-            this.txtSubTotal.Location = new System.Drawing.Point(366, 90);
+            this.txtSubTotal.Location = new System.Drawing.Point(17, 260);
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.Size = new System.Drawing.Size(53, 13);
             this.txtSubTotal.TabIndex = 7;
@@ -100,7 +101,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(366, 167);
+            this.label2.Location = new System.Drawing.Point(17, 337);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 10;
@@ -108,7 +109,7 @@
             // 
             // txtPay
             // 
-            this.txtPay.Location = new System.Drawing.Point(426, 164);
+            this.txtPay.Location = new System.Drawing.Point(77, 334);
             this.txtPay.Name = "txtPay";
             this.txtPay.Size = new System.Drawing.Size(100, 20);
             this.txtPay.TabIndex = 11;
@@ -133,7 +134,7 @@
             // 
             // btnPay
             // 
-            this.btnPay.Location = new System.Drawing.Point(369, 217);
+            this.btnPay.Location = new System.Drawing.Point(20, 387);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(75, 23);
             this.btnPay.TabIndex = 15;
@@ -155,7 +156,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 268);
+            this.ClientSize = new System.Drawing.Size(659, 430);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnPay);
             this.Controls.Add(this.idLabel);
@@ -171,6 +172,7 @@
             this.Name = "BillForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BillForm";
+            this.Load += new System.EventHandler(this.BillForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

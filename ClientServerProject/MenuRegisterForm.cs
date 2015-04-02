@@ -32,13 +32,27 @@ namespace ClientServerProject
 
         private void dgMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            string available;
             if (e.RowIndex >= 0)
             {
 
+                gbAva.Enabled = true;
                 DataGridViewRow row = this.dgMenu.Rows[e.RowIndex];
                 txtDishe.Text = row.Cells["Dishes"].Value.ToString();
                 txtPrice.Text = row.Cells["Price"].Value.ToString();
                 txtDesc.Text = row.Cells["description"].Value.ToString();
+
+                available = row.Cells["available"].Value.ToString();
+                if (available == "y")
+                {
+                    rdAva.Checked = true;
+
+                }
+                else
+                {
+                    rdUnava.Checked = true;
+                }
+
                 menuID = Convert.ToInt16(row.Cells["ID"].Value.ToString());
 
 
@@ -82,11 +96,32 @@ namespace ClientServerProject
             Double price;
             String desc;
 
-            dishe = txtDishe.Text.ToString().Trim();
-            price = double.Parse(txtPrice.Text.ToString().Trim());
-            desc = txtDesc.Text.ToString().Trim();
+            try
+            {
+                
+                dishe = txtDishe.Text.ToString().Trim();
+                price = double.Parse(txtPrice.Text.ToString().Trim());
+                desc = txtDesc.Text.ToString().Trim();
 
-            insertFood(dishe, price, desc);
+                if (dishe.Length > 0 && desc.Length > 0)
+                {
+                    insertFood(dishe, price, desc);
+                }
+                else
+                {
+                    MessageBox.Show("One of the fields is empty!!!");
+                }
+
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("One of the fields is empty or its content type is wrong");
+            }
+
+            
+
+            
         }
 
         private void insertFood(string dishe, double price, string desc)
@@ -134,9 +169,9 @@ namespace ClientServerProject
             LoadData();
         }
 
-        private void updateMenu(int menuID, string dishe, double price, string desc)
+        private void updateMenu(int menuID, string dishe, double price, string desc, string available)
         {
-            string instruction = "UPDATE Menu SET dishes='" + dishe + "',price=" + price + ",description='" + desc + "' WHERE menuId=" + menuID;
+            string instruction = "UPDATE Menu SET dishes='" + dishe + "',price=" + price + ",description='" + desc + "',available='" + available + "' WHERE menuId=" + menuID;
 
             if (connection != null)
             {
@@ -172,12 +207,23 @@ namespace ClientServerProject
             String dishe;
             Double price;
             String desc;
+            String available;
 
             dishe = txtDishe.Text.ToString().Trim();
             price = double.Parse(txtPrice.Text.ToString().Trim());
             desc = txtDesc.Text.ToString().Trim();
+            if (rdAva.Checked == true)
+            {
+                available = "y";
+            }
+            else
+            {
+                available = "n";
+            }
 
-            updateMenu(menuID,dishe, price, desc);
+            updateMenu(menuID,dishe, price, desc, available);
+
+            gbAva.Enabled = false;
         }
 
         private void label1_Click(object sender, EventArgs e)

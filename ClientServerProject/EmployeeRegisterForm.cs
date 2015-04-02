@@ -40,7 +40,7 @@ namespace ClientServerProject
 
         private void LoadData()
         {
-            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name' FROM Employees";
+            string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name', active as 'Active' FROM Employees order by active asc";
 
             if (connection != null)
             {
@@ -76,29 +76,27 @@ namespace ClientServerProject
             String lastName;
             String password;
             String confPassword;
-
-            firstName = txtFirstName.Text.ToString().Trim();
-            lastName = txtLastName.Text.ToString().Trim();
-            password = txtPassword.Text.ToString().Trim();
-            confPassword = txtConfPassword.Text.ToString().Trim();
-
             
+                firstName = txtFirstName.Text.ToString().Trim();
+                lastName = txtLastName.Text.ToString().Trim();
+                password = txtPassword.Text.ToString().Trim();
+                confPassword = txtConfPassword.Text.ToString().Trim();
 
-            if (firstName.Length > 0 && lastName.Length > 0 && password.Length > 0 && confPassword.Length > 0)
-            {
-                if (password.Equals(confPassword,StringComparison.Ordinal))
+                if (firstName.Length > 0 && lastName.Length > 0 && password.Length > 0 && confPassword.Length > 0)
                 {
-                    insertEmployee(firstName, lastName, password);
+                    if (password.Equals(confPassword, StringComparison.Ordinal))
+                    {
+                        insertEmployee(firstName, lastName, password);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The password does not match!!!", "Message");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("The password does not match!!!", "Message");
-                }
-            }
-            else
-            {
-                MessageBox.Show("One of the fields is empty!!!", "Message");
-            }
+                    MessageBox.Show("One of the fields is empty!!!", "Message");
+                }  
         }
 
         private void insertEmployee(string firstName, string lastName, string password)
@@ -133,9 +131,9 @@ namespace ClientServerProject
             }
         }
 
-        private void updateEmployee(int empID, string firstName, string lastName, string password)
+        private void updateEmployee(int empID, string firstName, string lastName, string password, string active)
         {
-            string instruction = "UPDATE Employees SET firstName='" + firstName + "',lastName='" + lastName + "',password='" + password + "' WHERE EmployeeID=" + empID;
+            string instruction = "UPDATE Employees SET firstName='" + firstName + "',lastName='" + lastName + "',password='" + password + "',active='" + active + "' WHERE EmployeeID=" + empID;
 
             if (connection != null)
             {
@@ -175,12 +173,23 @@ namespace ClientServerProject
 
         private void dgEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            string active;
             if (e.RowIndex >= 0)
             {
 
                 DataGridViewRow row = this.dgEmployees.Rows[e.RowIndex];
                 txtFirstName.Text = row.Cells["First Name"].Value.ToString();
                 txtLastName.Text = row.Cells["Last Name"].Value.ToString();
+                active = row.Cells["Active"].Value.ToString();
+                gbActive.Enabled = true;
+                if (active == "y")
+                {
+                    rbActive.Checked = true;
+                }
+                else
+                {
+                    rbInactive.Checked = true;
+                }
                 empID = Convert.ToInt16(row.Cells["ID"].Value.ToString());
                 
 
@@ -193,11 +202,21 @@ namespace ClientServerProject
             String lastName;
             String password;
             String confPassword;
+            String active;
 
             firstName = txtFirstName.Text.ToString().Trim();
             lastName = txtLastName.Text.ToString().Trim();
             password = txtPassword.Text.ToString().Trim();
             confPassword = txtConfPassword.Text.ToString().Trim();
+            if (rbActive.Checked == true)
+            {
+                active = "y";
+            }
+            else
+            {
+                active = "n";
+            }
+
 
 
 
@@ -205,7 +224,7 @@ namespace ClientServerProject
             {
                 if (password.Equals(confPassword, StringComparison.Ordinal))
                 {
-                    updateEmployee(empID, firstName, lastName, password);
+                    updateEmployee(empID, firstName, lastName, password, active);
                 }
                 else
                 {
@@ -216,6 +235,7 @@ namespace ClientServerProject
             {
                 MessageBox.Show("One of the fields is empty!!!", "Message");
             }
+            gbActive.Enabled = false;
         }
 
         

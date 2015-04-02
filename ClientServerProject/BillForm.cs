@@ -73,7 +73,7 @@ namespace ClientServerProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Table field is empty or its content type is wrong!!!");
             }
             finally
             {
@@ -163,8 +163,13 @@ namespace ClientServerProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: " + ex);
+                MessageBox.Show("Payment field is empty or its content type is wrong!!!");
             }
+        }
+
+        private void BillForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

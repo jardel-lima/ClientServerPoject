@@ -45,8 +45,12 @@
             this.deleteEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.gbActive = new System.Windows.Forms.GroupBox();
+            this.rbInactive = new System.Windows.Forms.RadioButton();
+            this.rbActive = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.gbActive.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -81,13 +85,13 @@
             // 
             this.dgEmployees.AllowUserToAddRows = false;
             this.dgEmployees.AllowUserToDeleteRows = false;
-            this.dgEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgEmployees.Location = new System.Drawing.Point(12, 95);
             this.dgEmployees.MultiSelect = false;
             this.dgEmployees.Name = "dgEmployees";
             this.dgEmployees.ReadOnly = true;
-            this.dgEmployees.Size = new System.Drawing.Size(248, 270);
+            this.dgEmployees.Size = new System.Drawing.Size(318, 270);
             this.dgEmployees.TabIndex = 3;
             this.dgEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmployees_CellContentClick);
             this.dgEmployees.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEmployees_CellMouseUp);
@@ -125,7 +129,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(452, 313);
+            this.btnEdit.Location = new System.Drawing.Point(522, 393);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 8;
@@ -135,7 +139,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(545, 313);
+            this.btnAdd.Location = new System.Drawing.Point(616, 393);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 9;
@@ -193,11 +197,45 @@
             this.label7.TabIndex = 13;
             this.label7.Text = "Tip: Right click on the employee to delete";
             // 
+            // gbActive
+            // 
+            this.gbActive.Controls.Add(this.rbInactive);
+            this.gbActive.Controls.Add(this.rbActive);
+            this.gbActive.Enabled = false;
+            this.gbActive.Location = new System.Drawing.Point(439, 287);
+            this.gbActive.Name = "gbActive";
+            this.gbActive.Size = new System.Drawing.Size(200, 78);
+            this.gbActive.TabIndex = 14;
+            this.gbActive.TabStop = false;
+            // 
+            // rbInactive
+            // 
+            this.rbInactive.AutoSize = true;
+            this.rbInactive.Location = new System.Drawing.Point(7, 44);
+            this.rbInactive.Name = "rbInactive";
+            this.rbInactive.Size = new System.Drawing.Size(63, 17);
+            this.rbInactive.TabIndex = 1;
+            this.rbInactive.TabStop = true;
+            this.rbInactive.Text = "Inactive";
+            this.rbInactive.UseVisualStyleBackColor = true;
+            // 
+            // rbActive
+            // 
+            this.rbActive.AutoSize = true;
+            this.rbActive.Location = new System.Drawing.Point(7, 20);
+            this.rbActive.Name = "rbActive";
+            this.rbActive.Size = new System.Drawing.Size(55, 17);
+            this.rbActive.TabIndex = 0;
+            this.rbActive.TabStop = true;
+            this.rbActive.Text = "Active";
+            this.rbActive.UseVisualStyleBackColor = true;
+            // 
             // EmployeeRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 428);
+            this.Controls.Add(this.gbActive);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtConfPassword);
@@ -218,6 +256,8 @@
             this.Load += new System.EventHandler(this.FormEmployee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.gbActive.ResumeLayout(false);
+            this.gbActive.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,5 +281,8 @@
         private System.Windows.Forms.ToolStripMenuItem deleteEmployeeToolStripMenuItem;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox gbActive;
+        private System.Windows.Forms.RadioButton rbInactive;
+        private System.Windows.Forms.RadioButton rbActive;
     }
 }
