@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//To Test the Program:
+//(Manager) User: 1 password: 12345
+//(employee) User:2 password: 12201
 
 namespace ClientServerProject
 {
@@ -79,6 +82,7 @@ namespace ClientServerProject
             try
             {
                 userId = int.Parse(txtUser.Text.ToString());
+                //Search the User and Password in the database
                 string query = "select * from Employees where EmployeeID='" + txtUser.Text + "' and password='" + txtPassword.Text + "' and active='y'";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -87,8 +91,10 @@ namespace ClientServerProject
 
                 while (dataReader.Read())
                 {
+                    //get the Position, 1:Manager and 0: employee
                     Value = dataReader["position"].ToString();
                     userLname = dataReader["lastName"].ToString();
+                    //(active) y: the employee is active, n: the employee is not active
                     active = dataReader["active"].ToString();
                     count++;
                 }
@@ -97,7 +103,7 @@ namespace ClientServerProject
                 Cursor.Current = Cursors.Default;
                 if (count > 0)
                 {
-                    
+                    //if Position is equal to 0, the user is an employee and the program shows the employee's screen
                     if (Value.Equals("0", StringComparison.Ordinal))
                     {
                          EmpOrders = new EmployeeForm(connection, this, userId, userLname);
@@ -107,6 +113,7 @@ namespace ClientServerProject
                     }
                     else
                     {
+                        //if Position is equal to 1, the user is a manage and the program shows the Manager's screen
                         if (Value.Equals("1", StringComparison.Ordinal))
                         {
                             managerView = new ManagerForm(connection, this, userId, userLname);
