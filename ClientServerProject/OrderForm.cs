@@ -232,7 +232,7 @@ namespace ClientServerProject
 
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    insertOrder()
+                    insertOrder();
                 }
             }
             catch(Exception ex) {
