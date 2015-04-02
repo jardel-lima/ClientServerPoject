@@ -80,6 +80,7 @@ namespace ClientServerProject
             }
         }
 
+        //Search a employee by ID
         private void Search(int id)
         {
             string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name', active as 'Active' FROM Employees WHERE EmployeeID=" + id;
@@ -113,23 +114,27 @@ namespace ClientServerProject
             }
         }
 
+        //Open the EmployeeRegisterForm to register or edit a employee
         private void btnEmployees_Click(object sender, EventArgs e)
         {
             FormEmp = new EmployeeRegisterForm(connection);
             FormEmp.ShowDialog();
         }
 
+        //open the MenuRegisterForm to register or edit a item in Menu
         private void btnMenu_Click(object sender, EventArgs e)
         {
             food = new MenuRegisterForm(connection);
             food.ShowDialog();
         }
 
+        //Show all employee
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             LoadData();
             SearchAllOrder();
         }
+
 
         private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -140,6 +145,7 @@ namespace ClientServerProject
             mainForm.Show();
         }
 
+        //Button to search by data on Order table
         private void btnSearchByDate_Click(object sender, EventArgs e)
         {
             string date1, date2;
@@ -151,6 +157,7 @@ namespace ClientServerProject
                 SearchByDate(date1,date2);
         }
 
+        //function to search by data on Order table
         private void SearchByDate( string date1, string date2)
         {
             string query = "SELECT orderId 'Order ID', `date` AS 'Date', price AS 'Price', Employees_EmployeeID as 'Employee ID' FROM `Order` where `date` between '" + date1 + "' and '" + date2 + "'";
@@ -189,6 +196,7 @@ namespace ClientServerProject
             }
         }
 
+        //Function to search the orders by Employee's ID
         private void SearchOrderByEmp(int ID)
         {
             string query = "SELECT orderId 'Order ID', `date` AS 'Date', price AS 'Price' FROM `Order` where Employees_EmployeeID="+ID;
@@ -227,6 +235,7 @@ namespace ClientServerProject
             }
         }
 
+        //function to show all orders
         private void SearchAllOrder()
         {
             string query = "SELECT orderId 'Order ID', `date` AS 'Date', price AS 'Price', Employees_EmployeeID as 'Employee ID' FROM `Order`";
@@ -263,7 +272,8 @@ namespace ClientServerProject
                 MessageBox.Show("Try to connect");
             }
         }
-
+        
+        //function to get the row clicked in the Employee Daat GridView and call the function SearchOrderByEmp
         private void dgEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
         {
                 if (e.RowIndex >= 0)
@@ -274,6 +284,7 @@ namespace ClientServerProject
            
         }
 
+        //function to get the total of all orders
         private void getTotal()
         {
             int rowCount;

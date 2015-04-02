@@ -13,14 +13,15 @@ namespace ClientServerProject
 {
     public partial class BillForm : Form
     {
-        private MySqlConnection connection;
+        private MySqlConnection connection;//Connection variable
         private DataSet ds;
         private MySqlDataAdapter mcmd;
-        private const double GST = 5.0 / 100.0;
-        private double subTotal = 0.0;
-        private double taxes = 0.0;
-        private double total = 0.0;
-        private int tableNumber;
+        private const double GST = 5.0 / 100.0;//GST variable
+        private double subTotal = 0.0;//Saves table's subtotal
+        private double taxes = 0.0;//Saves table's taxes
+        private double total = 0.0;//Saves table's total
+        private int tableNumber;//Saves table's number
+
         public BillForm(MySqlConnection con, int id, string lname)
         {
             connection = con;
@@ -32,11 +33,9 @@ namespace ClientServerProject
         }
 
         
-
+        /*Load all orders made by  a specific table*/
         private void LoadData()
         {
-            
-
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
@@ -73,14 +72,14 @@ namespace ClientServerProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Table field is empty or its content type is wrong!!!");
+                MessageBox.Show(ex.Message);
             }
             finally
             {
                 Cursor.Current = Cursors.Default;
             }
         }
-
+        /*Calculates the total of all table's orders*/
         private void getTotal()
         {
             int rowCount;
@@ -110,7 +109,7 @@ namespace ClientServerProject
         {
             LoadData();
         }
-
+        /*After the all table's orders are paid delete the relation between orders and table*/
         private void delete()
         {
             
@@ -143,7 +142,7 @@ namespace ClientServerProject
                 MessageBox.Show("You are not connected!!!", "Message");
             }
         }
-
+        /*Process table's orders payment*/
         private void btnPay_Click(object sender, EventArgs e)
         {
             try{
@@ -163,13 +162,8 @@ namespace ClientServerProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Payment field is empty or its content type is wrong!!!");
+                MessageBox.Show("Erro: " + ex);
             }
-        }
-
-        private void BillForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

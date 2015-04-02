@@ -13,18 +13,18 @@ namespace ClientServerProject
 {  
     public partial class OrderForm : Form
     {
-        private MySqlConnection connection;
+        private MySqlConnection connection;//Connection variable
         private DataSet ds;
         private MySqlDataAdapter mcmd;
         private LoginForm mainForm;
-        private int userId;
-        private string userLname;
-        private const double GST = 5.0 / 100.0;
-        private double subTotal = 0.0;
-        private double taxes = 0.0;
-        private double total = 0.0;
-        private int table;
-        private EmployeeForm parentForm;
+        private int userId;//Saves the Current user id
+        private string userLname;//Saves the Current user last name
+        private const double GST = 5.0 / 100.0;//GST
+        private double subTotal = 0.0;//Saves the order's subtotal 
+        private double taxes = 0.0;//Saves the order's taxes
+        private double total = 0.0;//Savest the order's total
+        private int table;//Saves the client table number
+        private EmployeeForm parentForm;//Saves the Employee form
 
         public OrderForm(MySqlConnection conn, EmployeeForm empForm, int id, string lname)
         {
@@ -36,7 +36,7 @@ namespace ClientServerProject
             txtId.Text = "Id: " + id;
             parentForm = empForm;
         }
-
+        /*Load all the available items menu*/
         private void loadMenu()
         {
             string query = "SELECT menuId , dishes, description , price FROM Menu where available ='y'";
@@ -50,6 +50,7 @@ namespace ClientServerProject
             dataGVMenu.Columns[2].Width = 200;
             dataGVMenu.Columns[3].Width = 50;
             
+            /*Creates a ComboBoxColumn*/
             DataGridViewComboBoxColumn cmb = new DataGridViewComboBoxColumn();
             cmb.HeaderText = "Qty";
             cmb.Name = "cmb";
@@ -109,6 +110,7 @@ namespace ClientServerProject
             initiateOrderGrid();
         }
 
+        /*Add all selected menu items to the Order data Grid*/
         private void addItems(){
 
             int rows = dataGVMenu.RowCount;
@@ -164,10 +166,11 @@ namespace ClientServerProject
             }
             calculateTotal();
         }
-
+        /*Add or Change the item's quantity*/
         private void addOrUpdateItem(int dishId, string dishName, int dishQty, double dishPrice)
         {
             bool added = false;
+            /*Verifies if the 'new item is already in the Order DataGridView'*/
             foreach (DataGridViewRow row in dataGVOrder.Rows)
             {   
                 int id = int.Parse(row.Cells[0].Value.ToString());
@@ -179,13 +182,13 @@ namespace ClientServerProject
                     break;
                 }
             }
-
+            /*If it is a new item, then add it*/
             if (!added)
             {
                 dataGVOrder.Rows.Add(dishId, dishName, dishQty, string.Format("{0:0.00}", dishPrice * dishQty));
             }
         }
-
+        /*Calculates the order's total based on the Order DataGridView*/
         private void calculateTotal()
         {
             int rowCount = dataGVOrder.RowCount;
@@ -229,7 +232,7 @@ namespace ClientServerProject
 
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    confirmPurchase();
+                    insertOrder();
                 }
             }
             catch(Exception ex) {
@@ -238,11 +241,7 @@ namespace ClientServerProject
            
         }
 
-        private void confirmPurchase()
-        {
-            insertOrder();
-        }
-
+       /*Register the order*/
         private void insertOrder()
         {
             DateTime today = DateTime.Today;
@@ -259,8 +258,8 @@ namespace ClientServerProject
                     cmd.CommandText = instruction;
                     cmd.ExecuteNonQuery();
                     orderId = cmd.LastInsertedId;
-                    inserteOrderDetails(orderId);
-                    insertOrderTable(orderId);
+                    inserteOrderDetails(orderId);//Insert order details
+                    insertOrderTable(orderId);//Relates order id with table number
 
                     MessageBox.Show("Order registered","Message" , MessageBoxButtons.OK);
                     parentForm.LoadData();
@@ -282,7 +281,7 @@ namespace ClientServerProject
                 MessageBox.Show("You are not connected!!!", "Message");
             }
         }
-
+        /*Associates the order id withe the client user table number*/
         private void insertOrderTable(long orderId)
         {
            
@@ -303,7 +302,7 @@ namespace ClientServerProject
             
            
         }
-
+        /*Insert orders details*/
         private void inserteOrderDetails(long orderId){
             int rowCount = dataGVOrder.RowCount;
 
