@@ -30,6 +30,7 @@ namespace ClientServerProject
 
         }
 
+        //function to get the row clicked
         private void dgMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string available;
@@ -42,7 +43,9 @@ namespace ClientServerProject
                 txtPrice.Text = row.Cells["Price"].Value.ToString();
                 txtDesc.Text = row.Cells["description"].Value.ToString();
 
+                //get the value of "avalilable" field 
                 available = row.Cells["available"].Value.ToString();
+                //check if the dishe is available
                 if (available == "y")
                 {
                     rdAva.Checked = true;
@@ -59,6 +62,7 @@ namespace ClientServerProject
             }
         }
 
+        //show the Menu
         private void LoadData()
         {
             string query = "SELECT menuId AS 'ID', dishes AS 'Dishes', price AS 'Price' , description, available  FROM Menu";
@@ -90,6 +94,8 @@ namespace ClientServerProject
                 MessageBox.Show("Try to connect");
             }
         }
+
+        //function to the add button
         private void btnAdd_Click(object sender, EventArgs e)
         {
             String dishe;
@@ -124,6 +130,7 @@ namespace ClientServerProject
             
         }
 
+        //Insert a new dishe in the Menu
         private void insertFood(string dishe, double price, string desc)
         {
             string instruction = "INSERT INTO Menu(dishes,price,description) VALUES ('" + dishe + "','" + price + "','" + desc + "')";
@@ -169,6 +176,7 @@ namespace ClientServerProject
             LoadData();
         }
 
+        //function to edit a item in the menu
         private void updateMenu(int menuID, string dishe, double price, string desc, string available)
         {
             string instruction = "UPDATE Menu SET dishes='" + dishe + "',price=" + price + ",description='" + desc + "',available='" + available + "' WHERE menuId=" + menuID;
@@ -201,7 +209,7 @@ namespace ClientServerProject
             }
         }
 
-
+        //button edit menu
         private void btnEdit_Click(object sender, EventArgs e)
         {
             String dishe;
@@ -231,6 +239,7 @@ namespace ClientServerProject
 
         }
 
+        //function to set a dishe as unvailable
         private void delete()
         {
             string query = "UPDATE Menu SET available = 'n' WHERE menuId=" + IdDelete;
@@ -263,6 +272,7 @@ namespace ClientServerProject
             }
         }
 
+        //function to make a dishe unavailabe when the user click on the DataGridView using right click
         private void dgMenus_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewRow row = this.dgMenu.Rows[e.RowIndex];
@@ -271,6 +281,7 @@ namespace ClientServerProject
                 this.dgMenu.Rows[e.RowIndex].Selected = true;
                 this.rowIndex = e.RowIndex;
                 this.dgMenu.CurrentCell = this.dgMenu.Rows[e.RowIndex].Cells[0];
+                //get the ID to make the dishe Inavailable
                 IdDelete = Convert.ToInt16(row.Cells["ID"].Value.ToString());
                 this.contextMenuStrip1.Show(this.dgMenu, e.Location);
 

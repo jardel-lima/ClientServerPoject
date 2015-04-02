@@ -38,6 +38,7 @@ namespace ClientServerProject
             LoadData();
         }
 
+        //function to show all employees
         private void LoadData()
         {
             string query = "SELECT EmployeeID AS 'ID', firstName AS 'First Name', lastName AS 'Last Name', active as 'Active' FROM Employees order by active asc";
@@ -70,6 +71,7 @@ namespace ClientServerProject
             }
         }
 
+        //function of the add button 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             String firstName;
@@ -99,6 +101,7 @@ namespace ClientServerProject
                 }  
         }
 
+        //insert a new employee in the Database
         private void insertEmployee(string firstName, string lastName, string password)
         {
             string instruction = "INSERT INTO Employees(firstName,lastName,position,password) VALUES ('" + firstName + "','" + lastName + "',0,'" + password + "')";
@@ -131,6 +134,7 @@ namespace ClientServerProject
             }
         }
 
+        //function to edit a employee fields and update the database
         private void updateEmployee(int empID, string firstName, string lastName, string password, string active)
         {
             string instruction = "UPDATE Employees SET firstName='" + firstName + "',lastName='" + lastName + "',password='" + password + "',active='" + active + "' WHERE EmployeeID=" + empID;
@@ -163,6 +167,7 @@ namespace ClientServerProject
             }
         }
 
+        
         private void clearTextBox()
         {
             txtFirstName.Text = "";
@@ -170,18 +175,24 @@ namespace ClientServerProject
             txtPassword.Text = "";
             txtConfPassword.Text = "";
         }
-
+        
+        //function to get the clicked row in the Employee DataGridView
         private void dgEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string active;
+            
+            string active; //Var to get the field "active" in the table Employee which says if the employee still working or not
             if (e.RowIndex >= 0)
             {
 
                 DataGridViewRow row = this.dgEmployees.Rows[e.RowIndex];
                 txtFirstName.Text = row.Cells["First Name"].Value.ToString();
                 txtLastName.Text = row.Cells["Last Name"].Value.ToString();
+                
                 active = row.Cells["Active"].Value.ToString();
+                //enable the GroupBox which contains the check boxes
                 gbActive.Enabled = true;
+
+                //Checking the checkBox
                 if (active == "y")
                 {
                     rbActive.Checked = true;
@@ -190,12 +201,14 @@ namespace ClientServerProject
                 {
                     rbInactive.Checked = true;
                 }
+                //get the Employee ID
                 empID = Convert.ToInt16(row.Cells["ID"].Value.ToString());
                 
 
             }
         }
 
+        //Function to the button Edit
         private void btnEdit_Click(object sender, EventArgs e)
         {
             String firstName;
@@ -208,6 +221,8 @@ namespace ClientServerProject
             lastName = txtLastName.Text.ToString().Trim();
             password = txtPassword.Text.ToString().Trim();
             confPassword = txtConfPassword.Text.ToString().Trim();
+
+            //get the value of check box and set to the string "active"
             if (rbActive.Checked == true)
             {
                 active = "y";
@@ -219,9 +234,10 @@ namespace ClientServerProject
 
 
 
-
+            //check if one of the fields is not empty
             if (firstName.Length > 0 && lastName.Length > 0 && password.Length > 0 && confPassword.Length > 0)
             {
+                //checks if the password matchs
                 if (password.Equals(confPassword, StringComparison.Ordinal))
                 {
                     updateEmployee(empID, firstName, lastName, password, active);
@@ -239,7 +255,7 @@ namespace ClientServerProject
         }
 
         
-
+        //function to make a employee "inactive" which means he/she is not working anymore
         private void delete()
         {
             string query = "UPDATE Employees SET active = 'n' WHERE EmployeeID=" + empIdDelete;
@@ -272,6 +288,7 @@ namespace ClientServerProject
             }
         }
 
+        //function to get the row clicked on the Employee DataGridView
         private void dgEmployees_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewRow row = this.dgEmployees.Rows[e.RowIndex];
@@ -280,6 +297,7 @@ namespace ClientServerProject
                 this.dgEmployees.Rows[e.RowIndex].Selected = true;
                 this.rowIndex = e.RowIndex;
                 this.dgEmployees.CurrentCell = this.dgEmployees.Rows[e.RowIndex].Cells[0];
+                //get the ID of employee selected to make him/her Inactive
                 empIdDelete = Convert.ToInt16(row.Cells["ID"].Value.ToString());
                 this.contextMenuStrip1.Show(this.dgEmployees, e.Location);
                 
@@ -289,6 +307,7 @@ namespace ClientServerProject
             }
         }
         
+        //function to call the "delete" function using a contexMenuStrip when the user click on the row using the right click
         private void contextMenuStrip1_MouseClick(object sender, MouseEventArgs e)
         {
             DialogResult result = MessageBox.Show("Comfirm delete?", "Confirm", MessageBoxButtons.YesNo);

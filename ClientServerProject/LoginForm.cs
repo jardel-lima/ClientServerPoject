@@ -67,6 +67,7 @@ namespace ClientServerProject
             txtPassword.Text = "";
         }
 
+        //Function to the button Login
         private void btnLogin_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -96,6 +97,7 @@ namespace ClientServerProject
                 Cursor.Current = Cursors.Default;
                 if (count > 0)
                 {
+                    
                     if (Value.Equals("0", StringComparison.Ordinal))
                     {
                          EmpOrders = new EmployeeForm(connection, this, userId, userLname);
