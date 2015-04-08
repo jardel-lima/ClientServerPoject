@@ -229,7 +229,12 @@ namespace ClientServerProject
             }
             else
             {
-                active = "n";
+                if (isAdmin(empID)) {
+                    MessageBox.Show("This employee is the only Manager, It canot be unactived !!!", "Message");
+                    active = "y";
+                }
+                else
+                    active = "n";
             }
 
 
@@ -252,6 +257,49 @@ namespace ClientServerProject
                 MessageBox.Show("One of the fields is empty!!!", "Message");
             }
             gbActive.Enabled = false;
+        }
+
+        public bool isAdmin(int id)
+        {
+            bool admin = false;
+            int position = 1;
+            string query = "SELECT position FROM Employees where  EmployeeID = "+id;
+
+            if (connection != null)
+            {
+                try
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        position = int.Parse(dataReader[0].ToString());
+                    }
+                    dataReader.Close();
+                    if (position == 1)
+                        admin = true;
+                    else
+                        admin = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Try to connect");
+            }
+
+            return admin;
         }
 
     }
