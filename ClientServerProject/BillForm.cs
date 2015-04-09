@@ -1,4 +1,14 @@
-﻿using MySql.Data.MySqlClient;
+﻿/*
+Cliente Server Final Project - Winter 2015
+
+Jardel Lima - 300219631
+Marcelle Amorim - 300227420
+Weslley Kelson - 300227439
+Rhafael Pinheiro - 300227431
+ 
+Database account: f2014_user24
+ */
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,9 +94,10 @@ namespace ClientServerProject
         private void getTotal()
         {
             int rowCount;
-            
+            subTotal = 0.0;
             double price = 0.0;
             int quantity = 0;
+            
            
             rowCount = dgOrderTable.RowCount;
             Cursor.Current = Cursors.WaitCursor;
